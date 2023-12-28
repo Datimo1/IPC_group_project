@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package javafxmlapplication;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
 /**
@@ -21,11 +18,22 @@ public class FXMLVistaInicialController implements Initializable {
     private Button readyButton;
 
     /**
-     * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        readyButton.setOnAction((event) -> {
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+// ó AlertType.WARNING ó AlertType.ERROR ó AlertType.CONFIRMATION
+        alert.setTitle("Esa es");
+        alert.setHeaderText("Vamos alla");
+// ó null si no queremos cabecera
+        alert.setContentText(null);
+        alert.showAndWait();
+        
+        });
     }    
     
 }
