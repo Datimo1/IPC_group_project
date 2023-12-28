@@ -28,7 +28,7 @@ public class FXMLVistaInicialController implements Initializable {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
 // ó AlertType.WARNING ó AlertType.ERROR ó AlertType.CONFIRMATION
         alert.setTitle("Esa es");
-        alert.setHeaderText("Vamos alla");
+        alert.setHeaderText("Yes why not");
 // ó null si no queremos cabecera
         alert.setContentText(null);
         alert.showAndWait();
