@@ -30,7 +30,7 @@ public class FXMLVistaInicialController implements Initializable {
         alert.setTitle("Esa es");
         alert.setHeaderText("Yes why not");
 // ó null si no queremos cabecera
-        alert.setContentText(null);
+        alert.setContentText("Siu");
         alert.showAndWait();
         
         });
