@@ -1,7 +1,39 @@
-/*
- * Empty Stylesheet file.
- */
+.root {
+    -fx-background-color: #ffffff; /* Color de fondo blanco */
+}
 
-.mainFxmlClass {
+.header {
+    -fx-background-color: #005aa7; /* Azul oscuro */
+    -fx-padding: 10;
+}
 
+.title-label {
+    -fx-text-fill: #ffffff; /* Texto en blanco */
+    -fx-font-size: 24px;
+}
+
+.total-expense-label {
+    -fx-font-size: 18px;
+}
+
+.category-label {
+    -fx-font-size: 16px;
+}
+
+.category-container {
+    -fx-padding: 10;
+    -fx-border-color: #005aa7; /* Borde azul oscuro */
+    -fx-border-width: 1;
+}
+
+.footer {
+    -fx-background-color: #005aa7; /* Azul oscuro */
+    -fx-padding: 10;
+}
+
+.action-button {
+    -fx-background-color: #ffffff; /* Fondo blanco */
+    -fx-text-fill: #005aa7; /* Texto azul oscuro */
+    -fx-font-size: 14px;
+    -fx-padding: 5 10;
 }
