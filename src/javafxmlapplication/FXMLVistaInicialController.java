@@ -17,6 +17,8 @@ public class FXMLVistaInicialController implements Initializable {
 
     @FXML
     private Button readyButton;
+    @FXML
+    private VBox categoriesContainer;
 
     /**
      *

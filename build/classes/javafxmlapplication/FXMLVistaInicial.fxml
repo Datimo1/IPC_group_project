@@ -9,11 +9,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
+<BorderPane prefHeight="600" prefWidth="800" stylesheets="@../../../../Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/fxmlvistainicial-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
     
     <top>
-        <HBox alignment="CENTER" styleClass="header">
+        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" styleClass="header">
             <Label styleClass="title-label" text="Gestor de Gastos" />
+         <Button mnemonicParsing="false" text="Iniciar sesión/Registrarse" />
         </HBox>
     </top>
 
@@ -32,7 +33,7 @@
          <children>
             <VBox>
                <children>
-                     <Button fx:id="readyButton" maxWidth="1.7976931348623157E308" styleClass="action-button" text="Añadir Gasto">
+                     <Button fx:id="readyButton" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" styleClass="action-button" text="Añadir Gasto">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +45,7 @@
             </VBox>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" text="Inicio">
+                  <Button alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Inicio">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,7 +53,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" text="Lista Gastos">
+                  <Button alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Lista Gastos">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,7 +61,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" text="Gráficas">
+                  <Button alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Gráficas">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -72,7 +73,7 @@
             </VBox>
             <VBox>
                <children>
-                  <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Imprimir Reporte en PDF">
+                  <Button alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="action-button" text="Imprimir Reporte en PDF">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
