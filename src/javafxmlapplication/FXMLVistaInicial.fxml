@@ -31,7 +31,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/resources/custom.plus.circle.png" />
+                              <Image url="@../resources/custom-plus-circle.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -43,7 +43,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/resources/custom.house.png" />
+                              <Image url="@../resources/custom-house.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -51,7 +51,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/resources/list.bullet.rectangle.png" />
+                              <Image url="@../resources/list-bullet-rectangle.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -59,7 +59,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/resources/chart.bar.xaxis.png" />
+                              <Image url="@../resources/chart-bar-xaxis.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -71,7 +71,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/resources/doc.png" />
+                              <Image url="@../resources/doc.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
