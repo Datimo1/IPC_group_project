@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" prefWidth="800" prefHeight="600">
+<BorderPane prefHeight="600" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
     
     <top>
         <HBox alignment="CENTER" styleClass="header">
-            <Label text="Gestor de Gastos" styleClass="title-label" />
+            <Label styleClass="title-label" text="Gestor de Gastos" />
         </HBox>
     </top>
 
     <center>
         <VBox alignment="CENTER" spacing="20">
             <!-- Contenido principal aquí -->
-            <Label text="Gasto Total: $" styleClass="total-expense-label" />
-            <Label text="Desglose por Categorías:" styleClass="category-label" />
-            <VBox fx:id="categoriesContainer" styleClass="category-container" spacing="5">
+            <Label styleClass="total-expense-label" text="Gasto Total: $" />
+            <Label styleClass="category-label" text="Desglose por Categorías:" />
+            <VBox fx:id="categoriesContainer" spacing="5" styleClass="category-container">
                 <!-- Etiquetas de categorías aquí -->
             </VBox>
         </VBox>
@@ -27,8 +27,8 @@
 
     <bottom>
         <HBox alignment="CENTER" styleClass="footer">
-            <Button text="Agregar Gasto" styleClass="action-button" />
-            <Button text="Ver Reporte" styleClass="action-button" />
+            <Button fx:id="readyButton" styleClass="action-button" text="Agregar Gasto" />
+            <Button styleClass="action-button" text="Ver Reporte" />
             <!-- Otros botones aquí según sea necesario -->
         </HBox>
     </bottom>
