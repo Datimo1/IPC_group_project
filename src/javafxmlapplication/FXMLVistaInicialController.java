@@ -55,9 +55,6 @@ public class FXMLVistaInicialController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        // Crear una transición de escala
-        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), menu);
-        scaleTransition.setToX(1.5);
-        scaleTransition.setToY(1.0);
 
         
     }    
