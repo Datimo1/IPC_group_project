@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/david/Desktop/Uni/3º/IPC_group_project/src/javafxmlapplication/FXMLVistaInicialController.java</file>
             <file>file:/C:/Users/david/Desktop/Uni/3º/IPC_group_project/src/javafxmlapplication/JavaFXMLApplication.java</file>
             <file>file:/C:/Users/david/Desktop/Uni/3º/IPC_group_project/src/javafxmlapplication/fxmlvistainicial-estilos.css</file>
+=======
+            <file>file:/Users/nicogalvez/Documents/3%20INFADE/1r%20cuatrimestre/IPC/Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/fxmlvistainicial-estilos.css</file>
+            <file>file:/Users/nicogalvez/Documents/3%20INFADE/1r%20cuatrimestre/IPC/Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/FXMLVistaGastosController.java</file>
+            <file>file:/Users/nicogalvez/Documents/3%20INFADE/1r%20cuatrimestre/IPC/Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/iniciosesion-estilos.css</file>
+            <file>file:/Users/nicogalvez/Documents/3%20INFADE/1r%20cuatrimestre/IPC/Proyecto%20prácticas/IPC_group_project/src/javafxmlapplication/FXMLVistaInicialController.java</file>
+>>>>>>> 7ce535b84139b7ae2dc206bf3933a0063247dfe7
         </group>
     </open-files>
 </project-private>
