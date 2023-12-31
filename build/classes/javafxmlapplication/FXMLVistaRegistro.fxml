@@ -147,7 +147,7 @@
                   <Insets left="15.0" right="15.0" />
                </GridPane.margin>
                <children>
-                  <Button fx:id="imageButton" graphicTextGap="7.0" mnemonicParsing="false" styleClass="action-button" text="Elegir imagen">
+                  <Button fx:id="imageButton" graphicTextGap="7.0" mnemonicParsing="false" onAction="#pickImage" styleClass="action-button" text="Elegir imagen">
                      <graphic>
                         <ImageView fx:id="profileImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>

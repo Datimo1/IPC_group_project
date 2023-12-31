@@ -7,6 +7,7 @@ package javafxmlapplication;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -36,7 +37,9 @@ public class FXMLVistaRegistroController implements Initializable {
         // TODO
     }
     
-    private void onImageButtonClick() {
+    @FXML
+    //Ya funciona jeje
+    private void pickImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar Imagen");
         fileChooser.getExtensionFilters().addAll(
