@@ -1,0 +1,30 @@
+.root {
+    -fx-background-color: #ffffff; /* Color de fondo blanco */
+    -fx-font-family: hind;
+}
+
+.header {
+    -fx-background-color: #005aa7; /* Azul oscuro */
+}
+
+.title-label {
+    -fx-text-fill: #ffffff; /* Texto en blanco */
+    -fx-font-family: hind;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.footer {
+    -fx-background-color: #005aa7; /* Azul oscuro */
+    
+}
+
+.action-button {
+    -fx-background-color: transparent; /* Fondo blanco */
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px; 
+    -fx-font-weight: bold;
+}
+.action-button:hover {
+    -fx-background-color: #6666ff;
+}

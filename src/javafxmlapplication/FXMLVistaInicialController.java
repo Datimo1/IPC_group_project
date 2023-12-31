@@ -16,9 +16,19 @@ import javafx.scene.layout.VBox;
 public class FXMLVistaInicialController implements Initializable {
 
     @FXML
-    private Button readyButton;
-    @FXML
     private VBox categoriesContainer;
+    @FXML
+    private Button inicioSesionButton;
+    @FXML
+    private Button addChargeButton;
+    @FXML
+    private Button inicioButton;
+    @FXML
+    private Button listaButton;
+    @FXML
+    private Button graficasButton;
+    @FXML
+    private Button aPDFButton;
 
     /**
      *
