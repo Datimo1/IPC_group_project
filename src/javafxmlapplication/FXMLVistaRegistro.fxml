@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -138,7 +139,7 @@
                   <Label styleClass="content-text" text="Foto de perfil" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="9">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="9">
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
@@ -146,13 +147,19 @@
                   <Insets left="15.0" right="15.0" />
                </GridPane.margin>
                <children>
-                  <ImageView fx:id="profileImage" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="imageButton" mnemonicParsing="false" text="Elegir imagen" />
+                  <Button fx:id="imageButton" graphicTextGap="7.0" mnemonicParsing="false" styleClass="action-button" text="Elegir imagen">
+                     <graphic>
+                        <ImageView fx:id="profileImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/doc.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </HBox>
             <HBox alignment="TOP_RIGHT" GridPane.rowIndex="10">
                <children>
-                  <Button mnemonicParsing="false" text="Crear Cuenta" />
+                  <Button mnemonicParsing="false" styleClass="action-button" text="Crear Cuenta" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />

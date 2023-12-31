@@ -43,7 +43,7 @@
         </VBox>
     </center>
    <left>
-      <VBox alignment="CENTER" minWidth="-Infinity" prefWidth="60.0" styleClass="menu" BorderPane.alignment="CENTER">
+      <VBox fx:id="menu" alignment="CENTER" minWidth="-Infinity" prefWidth="60.0" styleClass="menu" BorderPane.alignment="CENTER">
          <children>
             <VBox>
                <children>
@@ -113,7 +113,7 @@
             <HBox alignment="CENTER_RIGHT" StackPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="imagenPerfil" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="inicioSesionButton" mnemonicParsing="false" styleClass="action-button" text="Iniciar sesión/Registrarse" />
+                  <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#inicioSesion" styleClass="action-button" text="Iniciar sesión/Registrarse" />
                </children>
                <padding>
                   <Insets right="10.0" />
