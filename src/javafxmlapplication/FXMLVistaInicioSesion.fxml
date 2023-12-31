@@ -1,125 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600" prefWidth="800" stylesheets="@fxmlvistainicial-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
-
-    <center>
-        <VBox alignment="CENTER" spacing="20">
-         <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="740.0" styleClass="total-expense-container" VBox.vgrow="ALWAYS">
-            <children>
-                  <!-- Contenido principal aquí -->
-                  <Label styleClass="total-expense-label" text="Gasto total:" />
-               <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="total-expense-label" text="0">
-                  <padding>
-                     <Insets left="10.0" />
-                  </padding>
-               </Label>
-               <Label styleClass="total-expense-label" text="€">
-                  <HBox.margin>
-                     <Insets left="5.0" />
-                  </HBox.margin>
-               </Label>
-            </children>
-         </HBox>
-         <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="740.0" VBox.vgrow="NEVER">
-            <children>
-                  <Label styleClass="category-label" text="Desglose por Categorías:" />
-            </children>
-         </HBox>
-            <VBox fx:id="categoriesContainer" prefHeight="497.0" prefWidth="740.0" spacing="5" styleClass="category-container">
-                <!-- Etiquetas de categorías aquí -->
-            </VBox>
-         <PieChart fx:id="tartaCategorias" title="Gasto este mes por categorías" />
-        </VBox>
-    </center>
-   <left>
-      <VBox alignment="CENTER" minWidth="-Infinity" prefWidth="60.0" styleClass="menu" BorderPane.alignment="CENTER">
-         <children>
-            <VBox>
-               <children>
-                     <Button fx:id="addChargeButton" alignment="BASELINE_LEFT" ellipsisString=" " maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="50.0" styleClass="action-button" text="Añadir Gasto">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/custom-plus-circle.png" />
-                           </image></ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER_LEFT" prefWidth="90.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Button fx:id="inicioButton" alignment="BASELINE_LEFT" ellipsisString=" " maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Inicio">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/custom-house.png" />
-                           </image></ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="listaButton" alignment="BASELINE_LEFT" ellipsisString="" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Lista Gastos">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/list-bullet-rectangle.png" />
-                           </image></ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="graficasButton" alignment="BASELINE_LEFT" ellipsisString=" " maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Gráficas">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/chart-bar-xaxis.png" />
-                           </image></ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
-            <VBox>
-               <children>
-                  <Button fx:id="aPDFButton" alignment="BASELINE_LEFT" ellipsisString=" " maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Reporte en PDF">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/doc.png" />
-                           </image></ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="20.0" left="15.0" top="15.0" />
-         </padding>
-      </VBox>
-   </left>
+<BorderPane prefHeight="600" prefWidth="500.0" stylesheets="@iniciosesion-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
    <top>
-      <StackPane prefHeight="100.0" styleClass="header" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
          <children>
-               <Label alignment="CENTER" styleClass="title-label" text="POLIGASTOS" />
-            <HBox alignment="CENTER_RIGHT" StackPane.alignment="CENTER">
+            <Label styleClass="title-label" text="Iniciar Sesión" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox alignment="BOTTOM_LEFT">
                <children>
-                  <Button fx:id="inicioSesionButton" mnemonicParsing="false" styleClass="action-button" text="Iniciar sesión/Registrarse" />
+                  <Label text="Nickname" />
                </children>
                <padding>
-                  <Insets right="10.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </padding>
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.rowIndex="1">
+               <children>
+                  <TextField HBox.hgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Contraseña" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" GridPane.rowIndex="3">
+               <children>
+                  <PasswordField HBox.hgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.rowIndex="4">
+               <children>
+                  <Button mnemonicParsing="false" text="Iniciar Sesión" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
             </HBox>
          </children>
-      </StackPane>
-   </top>
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+      </GridPane>
+   </center>
+   <bottom>
+      <VBox prefHeight="150.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <Separator prefWidth="200.0" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label text="¿Aún no tienes una cuenta?" />
+                  <Button mnemonicParsing="false" text="Registrarse" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </bottom>
 
 </BorderPane>

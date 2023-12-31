@@ -16,7 +16,10 @@
 
 .footer {
     -fx-background-color: #005aa7; /* Azul oscuro */
-    
+}
+
+.content{
+    -fx-background-color: linear-gradient(#005aa7 0%, #ccccff 50%, red 100%);
 }
 
 .action-button {
