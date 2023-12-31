@@ -41,7 +41,7 @@
         </VBox>
     </center>
    <left>
-      <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="60.0" styleClass="menu" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" minWidth="-Infinity" prefWidth="60.0" styleClass="menu" BorderPane.alignment="CENTER">
          <children>
             <VBox>
                <children>
@@ -55,7 +55,7 @@
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="CENTER_LEFT" prefHeight="403.0" prefWidth="90.0" VBox.vgrow="ALWAYS">
+            <VBox alignment="CENTER_LEFT" prefWidth="90.0" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="inicioButton" alignment="BASELINE_LEFT" ellipsisString=" " maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Inicio">
                      <graphic>
