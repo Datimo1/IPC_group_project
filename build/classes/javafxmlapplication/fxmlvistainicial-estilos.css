@@ -1,15 +1,32 @@
 .root {
     -fx-background-color: #ffffff; /* Color de fondo blanco */
+    -fx-font-family: hind;
 }
 
 .header {
     -fx-background-color: #005aa7; /* Azul oscuro */
-    -fx-padding: 10;
+}
+
+.menu{
+    -fx-background-color: #9999ff; /* Azul claro */
+    -fx-pref-width:60;
+    -fx-transition-duration: 2; /* Duración de la transición en segundos */
+    -fx-transition-timing-function: ease-out; /* Función de temporización (puedes ajustarla) */
+}
+
+.menu:hover{
+    -fx-pref-width:175; 
 }
 
 .title-label {
     -fx-text-fill: #ffffff; /* Texto en blanco */
-    -fx-font-size: 24px;
+    -fx-font-family: hind;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.total-expense-container {
+    -fx-background-color: #ccccff;
 }
 
 .total-expense-label {
@@ -21,19 +38,21 @@
 }
 
 .category-container {
-    -fx-padding: 10;
-    -fx-border-color: #005aa7; /* Borde azul oscuro */
-    -fx-border-width: 1;
+    
+    
 }
 
 .footer {
     -fx-background-color: #005aa7; /* Azul oscuro */
-    -fx-padding: 10;
+    
 }
 
 .action-button {
-    -fx-background-color: #ffffff; /* Fondo blanco */
-    -fx-text-fill: #005aa7; /* Texto azul oscuro */
-    -fx-font-size: 14px;
-    -fx-padding: 5 10;
+    -fx-background-color: transparent; /* Fondo blanco */
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px; 
+    -fx-font-weight: bold;
+}
+.action-button:hover {
+    -fx-background-color: #6666ff;
 }
