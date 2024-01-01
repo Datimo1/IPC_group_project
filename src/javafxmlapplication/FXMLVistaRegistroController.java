@@ -11,8 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -28,6 +33,24 @@ public class FXMLVistaRegistroController implements Initializable {
     private ImageView profileImage;
     @FXML
     private Button imageButton;
+    @FXML
+    private ComboBox<String> eleccionPerfilCombo;
+    @FXML
+    private TextField nombreField;
+    @FXML
+    private TextField correField;
+    @FXML
+    private TextField apellidosField;
+    @FXML
+    private TextField nickNameField;
+    @FXML
+    private PasswordField contrasenyaField;
+    @FXML
+    private PasswordField contrasenyaConfirmField;
+    @FXML
+    private Button cancelarBoton;
+    @FXML
+    private Button crearCuentaBoton;
 
     /**
      * Initializes the controller class.
@@ -35,6 +58,18 @@ public class FXMLVistaRegistroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        eleccionPerfilCombo.getItems().addAll("/resources/perfil-1-empresario.png",
+                                   "/resources/perfil-2-ingeniero.png",
+                                   "/resources/perfil-3-medico.png");
+        eleccionPerfilCombo.setCellFactory(c->new ComboCelda());
+        eleccionPerfilCombo.setButtonCell(new ComboCelda());
+        
+        eleccionPerfilCombo.valueProperty().addListener((obv, oldV, newV)->{
+            if(newV != null){
+                profileImage.setImage(new Image(newV));
+            }
+        });
+        
     }
     
     @FXML
@@ -54,10 +89,30 @@ public class FXMLVistaRegistroController implements Initializable {
         // Procesar el archivo seleccionado (puedes hacer lo que necesites con él)
         if (selectedFile != null) {
             System.out.println("Imagen seleccionada: " + selectedFile.getAbsolutePath());
+            eleccionPerfilCombo.setValue(null);
             // Cargar la imagen en el ImageView
             Image image = new Image(selectedFile.toURI().toString());
             profileImage.setImage(image);
         }
+    }
+
+    class ComboCelda extends ComboBoxListCell<String>{
+
+        @Override
+        public void updateItem(String t, boolean bln) {
+            super.updateItem(t, bln); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            if (bln||t==null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                Image imagen = new Image(t, 25, 25, true, true);
+                ImageView imView = new ImageView(imagen);
+                setGraphic(imView);
+                setText(null);
+                
+            }
+        }
+        
     }
     
 }
