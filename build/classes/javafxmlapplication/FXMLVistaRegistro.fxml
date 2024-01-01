@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="510.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaRegistroController">
+<BorderPane prefHeight="510.0" prefWidth="767.0" stylesheets="@../../../../../3Infade/IPC/Entrega/IPC_group_project/src/javafxmlapplication/registro-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaRegistroController">
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
          <children>
             <Label styleClass="title-label" text="Registrarse" />
          </children>
@@ -26,7 +26,7 @@
    <center>
       <VBox styleClass="data-area" BorderPane.alignment="CENTER">
          <children>
-            <GridPane styleClass="content">
+            <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.20001220703125" minWidth="10.0" prefWidth="211.19998779296876" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.2000122070312" minWidth="10.0" prefWidth="291.2000122070312" />
@@ -181,7 +181,7 @@
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <PasswordField fx:id="contrasenyaConfirmField" prefHeight="37.0" prefWidth="199.0" HBox.hgrow="ALWAYS" />
+                        <PasswordField fx:id="contrasenyaConfirmField" prefHeight="37.0" prefWidth="199.0" stylesheets="@registro-estilos.css" HBox.hgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" top="5.0" />
@@ -208,6 +208,12 @@
                </padding>
             </GridPane>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
       </VBox>
    </center>
    <left>
@@ -231,6 +237,12 @@
                </graphic>
             </Button>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
       </VBox>
    </left>
 
