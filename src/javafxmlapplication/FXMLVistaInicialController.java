@@ -14,7 +14,10 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -59,6 +62,28 @@ public class FXMLVistaInicialController implements Initializable {
     private Button configuracionButton;
     @FXML
     private HBox visionSesionIniciada;
+    @FXML
+    private VBox vistaInicio;
+    @FXML
+    private HBox vistaGastos;
+    @FXML
+    private TableView<?> tablaGastos;
+    @FXML
+    private TableColumn<?, ?> nameColumn;
+    @FXML
+    private TableColumn<?, ?> categoryColumn;
+    @FXML
+    private TableColumn<?, ?> costColumn;
+    @FXML
+    private TableColumn<?, ?> dateColumn;
+    @FXML
+    private ComboBox<?> categoryFIlter;
+    @FXML
+    private ComboBox<?> monthFilter;
+    @FXML
+    private ComboBox<?> yearFilter;
+    @FXML
+    private VBox vistaGraficas;
 
     /**
      *
@@ -68,13 +93,15 @@ public class FXMLVistaInicialController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inicioSesionButton.visibleProperty().setValue(Boolean.TRUE);
-       visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
+        visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
         
         //Bindings
         addChargeButton.disableProperty().bind(usuarioLogeado.not());
         aPDFButton.disableProperty().bind(usuarioLogeado.not());
         
-       
+        vistaInicio.visibleProperty().setValue(Boolean.TRUE);
+        vistaGastos.visibleProperty().setValue(Boolean.FALSE);
+        vistaGraficas.visibleProperty().setValue(Boolean.FALSE);
 
         
     }    
@@ -103,6 +130,27 @@ public class FXMLVistaInicialController implements Initializable {
 
     @FXML
     private void configuracion(ActionEvent event) {
+    }
+
+    @FXML
+    private void cambiarVistaInicio(ActionEvent event) {
+        vistaInicio.visibleProperty().setValue(Boolean.TRUE);
+        vistaGastos.visibleProperty().setValue(Boolean.FALSE);
+        vistaGraficas.visibleProperty().setValue(Boolean.FALSE);
+    }
+
+    @FXML
+    private void cambiarVistaGastos(ActionEvent event) {
+        vistaInicio.visibleProperty().setValue(Boolean.FALSE);
+        vistaGastos.visibleProperty().setValue(Boolean.TRUE);
+        vistaGraficas.visibleProperty().setValue(Boolean.FALSE);
+    }
+
+    @FXML
+    private void cambiarVistaGraficas(ActionEvent event) {
+        vistaInicio.visibleProperty().setValue(Boolean.FALSE);
+        vistaGastos.visibleProperty().setValue(Boolean.FALSE);
+        vistaGraficas.visibleProperty().setValue(Boolean.TRUE);
     }
     
 }
