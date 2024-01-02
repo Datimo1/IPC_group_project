@@ -134,17 +134,23 @@ public class FXMLVistaInicialController implements Initializable {
 
     @FXML
     private void cambiarVistaInicio(ActionEvent event) {
-        
+        vistaInicio.visibleProperty().setValue(Boolean.TRUE);
+        vistaGastos.visibleProperty().setValue(Boolean.FALSE);
+        vistaGraficas.visibleProperty().setValue(Boolean.FALSE);
     }
 
     @FXML
     private void cambiarVistaGastos(ActionEvent event) {
-        
+        vistaInicio.visibleProperty().setValue(Boolean.FALSE);
+        vistaGastos.visibleProperty().setValue(Boolean.TRUE);
+        vistaGraficas.visibleProperty().setValue(Boolean.FALSE);
     }
 
     @FXML
     private void cambiarVistaGraficas(ActionEvent event) {
-        
+        vistaInicio.visibleProperty().setValue(Boolean.FALSE);
+        vistaGastos.visibleProperty().setValue(Boolean.FALSE);
+        vistaGraficas.visibleProperty().setValue(Boolean.TRUE);
     }
     
 }
