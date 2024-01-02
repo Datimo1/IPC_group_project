@@ -19,29 +19,22 @@
     -fx-background-color: #005aa7; /* Azul oscuro */
 }
 
-.data-area{
-    /* Podríamos hacer un degradadito o algo, aunque este queda feo */
-    -fx-background-color: linear-gradient(#005aa7 0%, #9999ff 20%, #ccccff 100%);
-}
 .content-text{
-    -fx-text-fill: #ffffff; /* Texto en blanco */
+    -fx-text-fill: #07396b; /* Texto en azul oscuro */
     -fx-font-family: hind;
-    -fx-font-size: 18px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
 
 .action-button {
-    -fx-background-color: transparent; /* Fondo blanco */
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-.action-button:hover {
-    -fx-background-color: #6666ff;
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-font-weight: regular;
 }
 
-.text-area {
-    -fx-background-color: white;
+.action-button:hover {
+    -fx-font-weight: bold;
 }
 
 .text-area {
@@ -51,6 +44,39 @@
 }
 
 .profile-pane{
-    -fx-background-color: #84b6f4;
+    -fx-background-color: #9999ff;
 
+}
+
+.data-area{
+    /* Podríamos hacer un degradadito o algo, aunque este queda feo */
+    /*-fx-background-color: linear-gradient(#005aa7 0%, #9999ff 20%, #ccccff 100%);*/
+    -fx-background-color: white;
+}
+
+.registrate-button{
+    -fx-background-color: #07396b;
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.registrate-button:pressed {
+    -fx-background-color: #2898ee; /* Cambia el color de fondo cuando se presiona */
+    -fx-text-fill: white; /* Cambia el color del texto cuando se presiona */
+}
+
+.registrate-button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.bg-separation{
+    -fx-background-color: #eee7ff;
+    -fx-background-radius: 10px;
+}
+
+.error-reminder{
+    -fx-fill: #ff0000;
+    -fx-font-size: 9px;
 }
