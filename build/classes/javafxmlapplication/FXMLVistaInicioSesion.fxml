@@ -16,7 +16,7 @@
 
 <BorderPane prefHeight="483.0" prefWidth="367.0" stylesheets="@iniciosesion-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicioSesionController">
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
          <children>
             <Label styleClass="title-label" text="Iniciar Sesión" />
          </children>

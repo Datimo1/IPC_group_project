@@ -246,7 +246,7 @@
       </VBox>
    </left>
    <top>
-      <StackPane prefHeight="100.0" styleClass="header" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="80.0" styleClass="header" BorderPane.alignment="CENTER">
          <children>
                <Label alignment="CENTER" styleClass="title-label" text="POLIGASTOS" />
             <HBox alignment="CENTER_RIGHT" StackPane.alignment="CENTER">
