@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600" prefWidth="500.0" stylesheets="@iniciosesion-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicioSesionController">
+<BorderPane prefHeight="483.0" prefWidth="367.0" stylesheets="@iniciosesion-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicioSesionController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
          <children>
@@ -91,7 +91,7 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" GridPane.rowIndex="4">
                <children>
-                  <Button fx:id="iniciarSesionButton" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="action-button" text="Iniciar Sesión" />
+                  <Button fx:id="iniciarSesionButton" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="registrate-button" text="Iniciar" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="10.0" />
@@ -102,19 +102,22 @@
             </HBox>
          </children>
          <padding>
-            <Insets left="50.0" right="50.0" />
+            <Insets left="30.0" right="30.0" />
          </padding>
       </GridPane>
    </center>
    <bottom>
-      <VBox prefHeight="150.0" prefWidth="100.0" styleClass="footer" BorderPane.alignment="TOP_CENTER">
+      <VBox prefHeight="94.0" prefWidth="367.0" styleClass="footer" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Separator prefWidth="200.0" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" VBox.vgrow="ALWAYS">
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin></Separator>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="¿Aún no tienes una cuenta?" textFill="WHITE">
+                  <Label text="¿Aún no tienes una cuenta?">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="14.0" />
                      </font></Label>
                   <Button fx:id="registroButton" mnemonicParsing="false" onAction="#registrarse" styleClass="action-button" text="Registrarse" />
                </children>
