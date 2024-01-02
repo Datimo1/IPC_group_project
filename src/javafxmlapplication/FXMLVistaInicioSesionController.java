@@ -70,8 +70,6 @@ public class FXMLVistaInicioSesionController implements Initializable {
         stage.setResizable(false);
         stage.centerOnScreen();
         stage.showAndWait();
-        
-        stage.setScene(registroButton.getScene());
     }
 
     @FXML
