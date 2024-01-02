@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -15,11 +23,11 @@
 <BorderPane prefHeight="600" prefWidth="800" stylesheets="@fxmlvistainicial-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
 
     <center>
-        <VBox alignment="CENTER" spacing="20">
+        <VBox alignment="CENTER" spacing="10.0">
          <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="740.0" styleClass="total-expense-container" VBox.vgrow="ALWAYS">
             <children>
                   <!-- Contenido principal aquí -->
-                  <Label styleClass="total-expense-label" text="Gasto total:" />
+                  <Label styleClass="total-expense-label" text="Gasto total este mes:" />
                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="total-expense-label" text="0">
                   <padding>
                      <Insets left="10.0" />
@@ -32,15 +40,145 @@
                </Label>
             </children>
          </HBox>
-         <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="740.0" VBox.vgrow="NEVER">
+         <StackPane>
             <children>
-                  <Label styleClass="category-label" text="Desglose por Categorías:" />
-            </children>
-         </HBox>
-            <VBox fx:id="categoriesContainer" prefHeight="497.0" prefWidth="740.0" spacing="5" styleClass="category-container">
+               <VBox fx:id="vistaInicio" visible="false">
+                  <children>
+                     <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="740.0">
+                        <children>
+                              <Label styleClass="category-label" text="Desglose por Categorías:" />
+                        </children>
+                     </HBox>
+                        <VBox fx:id="categoriesContainer" prefHeight="497.0" prefWidth="740.0" spacing="5" styleClass="category-container">
                 <!-- Etiquetas de categorías aquí -->
             </VBox>
-         <PieChart fx:id="tartaCategorias" title="Gasto este mes por categorías" />
+                     <PieChart fx:id="tartaCategorias" title="Gasto este mes por categorías" />
+                  </children>
+                  <padding>
+                     <Insets left="20.0" right="20.0" />
+                  </padding>
+               </VBox>
+               <HBox fx:id="vistaGastos" alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="740.0" visible="false">
+                  <children>
+                     <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <children>
+                           <TableView fx:id="tablaGastos">
+                              <columns>
+                                 <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Título" />
+                                 <TableColumn fx:id="categoryColumn" prefWidth="175.0" text="Categoría" />
+                                 <TableColumn fx:id="costColumn" prefWidth="110.0" text="Coste" />
+                                 <TableColumn fx:id="dateColumn" prefWidth="125.0" text="Fecha" />
+                              </columns>
+                           </TableView>
+                        </children>
+                        <HBox.margin>
+                           <Insets bottom="25.0" left="20.0" right="10.0" top="10.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="20.0">
+                        <children>
+                           <VBox alignment="CENTER" spacing="10.0">
+                              <children>
+                                 <Button mnemonicParsing="false" prefWidth="75.0" text="Ver Gasto" />
+                                 <Button mnemonicParsing="false" prefWidth="75.0" text="Editar" />
+                                 <Button mnemonicParsing="false" prefWidth="75.0" text="Eliminar" />
+                              </children>
+                              <padding>
+                                 <Insets bottom="20.0" />
+                              </padding>
+                           </VBox>
+                           <Label text="Filtros:" />
+                           <ComboBox fx:id="categoryFIlter" prefWidth="200.0" />
+                           <ComboBox fx:id="monthFilter" prefWidth="200.0" />
+                           <ComboBox fx:id="yearFilter" prefWidth="200.0" />
+                        </children>
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+                        <padding>
+                           <Insets bottom="45.0" left="20.0" right="20.0" />
+                        </padding>
+                     </VBox>
+                  </children>
+               </HBox>
+               <VBox fx:id="vistaGraficas" prefHeight="200.0" prefWidth="100.0">
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" right="20.0" />
+                  </padding>
+                  <children>
+                     <HBox minHeight="-Infinity" prefWidth="200.0">
+                        <children>
+                           <Button fx:id="comparacion" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarVistaComparacion" text="Comparación mensual" HBox.hgrow="ALWAYS" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Button fx:id="caregorias" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarVistaCategorias" text="Distribución por categorías" HBox.hgrow="SOMETIMES" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Button fx:id="tendencia" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambairVistaTendencia" text="Tendencia mensual" HBox.hgrow="ALWAYS" />
+                        </children>
+                     </HBox>
+                     <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <children>
+                           <HBox fx:id="comparacionVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0" visible="false">
+                              <children>
+                                 <BarChart HBox.hgrow="ALWAYS">
+                                   <xAxis>
+                                     <CategoryAxis side="BOTTOM" />
+                                   </xAxis>
+                                   <yAxis>
+                                     <NumberAxis side="LEFT" />
+                                   </yAxis>
+                                 </BarChart>
+                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Año" />
+                                       <ComboBox fx:id="selectYear" prefWidth="150.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets right="10.0" />
+                              </padding>
+                           </HBox>
+                           <HBox fx:id="categoriasVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0" visible="false">
+                              <children>
+                                 <PieChart HBox.hgrow="ALWAYS" />
+                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Mes" />
+                                       <ComboBox fx:id="selectMonth" prefWidth="150.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets right="10.0" />
+                              </padding>
+                           </HBox>
+                           <HBox fx:id="tendenciaVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                              <children>
+                                 <LineChart HBox.hgrow="ALWAYS">
+                                   <xAxis>
+                                     <CategoryAxis side="BOTTOM" />
+                                   </xAxis>
+                                   <yAxis>
+                                     <NumberAxis side="LEFT" />
+                                   </yAxis>
+                                 </LineChart>
+                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                       <Label minHeight="-Infinity" minWidth="-Infinity" text="Comparar con año:" />
+                                       <ComboBox fx:id="selectYear2" prefWidth="150.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets right="10.0" />
+                              </padding>
+                           </HBox>
+                        </children>
+                     </StackPane>
+                  </children>
+               </VBox>
+            </children>
+         </StackPane>
         </VBox>
     </center>
    <left>
@@ -60,7 +198,7 @@
             </VBox>
             <VBox alignment="CENTER_LEFT" prefWidth="90.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="inicioButton" alignment="BASELINE_LEFT" ellipsisString=" " maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Inicio">
+                  <Button fx:id="inicioButton" alignment="BASELINE_LEFT" ellipsisString=" " maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarVistaInicio" prefHeight="50.0" styleClass="action-button" text="Inicio">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -68,7 +206,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="listaButton" alignment="BASELINE_LEFT" ellipsisString="" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Lista Gastos">
+                  <Button fx:id="listaButton" alignment="BASELINE_LEFT" ellipsisString="" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarVistaGastos" prefHeight="50.0" styleClass="action-button" text="Lista Gastos">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -76,7 +214,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="graficasButton" alignment="BASELINE_LEFT" ellipsisString=" " maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" styleClass="action-button" text="Gráficas">
+                  <Button fx:id="graficasButton" alignment="BASELINE_LEFT" ellipsisString=" " maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cambiarVistaGraficas" prefHeight="50.0" styleClass="action-button" text="Gráficas">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
