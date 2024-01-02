@@ -175,7 +175,7 @@ public class FXMLVistaRegistroController implements Initializable {
                     
                     if(!User.checkPassword(contrasenyaField.getText())){
                         if(contrasenyaField.getText().equals("")){
-                            errorUsuario.setText("Debe tener más de 6 caracteres");
+                            errorContrasenya.setText("Debe tener más de 6 caracteres");
                         }
                     }
                     
