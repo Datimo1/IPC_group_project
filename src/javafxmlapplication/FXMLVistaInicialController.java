@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.ScaleTransition;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +14,15 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Acount;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -46,6 +51,14 @@ public class FXMLVistaInicialController implements Initializable {
     private ImageView imagenPerfil;
     @FXML
     private VBox menu;
+    
+    private SimpleBooleanProperty usuarioLogeado = new SimpleBooleanProperty(false);
+    @FXML
+    private Label nicknameLabel;
+    @FXML
+    private Button configuracionButton;
+    @FXML
+    private HBox visionSesionIniciada;
 
     /**
      *
@@ -54,13 +67,20 @@ public class FXMLVistaInicialController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // Crear una transición de escala
+        inicioSesionButton.visibleProperty().setValue(Boolean.TRUE);
+       visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
+        
+        //Bindings
+        addChargeButton.disableProperty().bind(usuarioLogeado.not());
+        aPDFButton.disableProperty().bind(usuarioLogeado.not());
+        
+       
 
         
     }    
 
     @FXML
-    private void inicioSesion(ActionEvent event) throws IOException {
+    private void inicioSesion(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaInicioSesion.fxml"));
         Parent root = loader.load();
         FXMLVistaInicioSesionController controller = loader.getController();
@@ -72,6 +92,17 @@ public class FXMLVistaInicialController implements Initializable {
         stage.setTitle("Inicio Sesion");
         stage.setResizable(false);
         stage.showAndWait();
+        if(controller.getUsuarioIniciado()){
+            usuarioLogeado.setValue(Boolean.TRUE);
+            inicioSesionButton.visibleProperty().setValue(Boolean.FALSE);
+            nicknameLabel.setText(Acount.getInstance().getLoggedUser().getNickName());
+            imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
+            visionSesionIniciada.visibleProperty().setValue(Boolean.TRUE);
+        }
+    }
+
+    @FXML
+    private void configuracion(ActionEvent event) {
     }
     
 }

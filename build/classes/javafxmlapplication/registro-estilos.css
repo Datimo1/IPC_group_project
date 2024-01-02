@@ -1,0 +1,82 @@
+.root {
+    -fx-background-color: #ffffff; /* Color de fondo blanco */
+    -fx-font-family: hind;
+    -fx-font-size: 16px;
+}
+
+.header {
+    -fx-background-color: #005aa7; /* Azul oscuro */
+}
+
+.title-label {
+    -fx-text-fill: #ffffff; /* Texto en blanco */
+    -fx-font-family: hind;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.footer {
+    -fx-background-color: #005aa7; /* Azul oscuro */
+}
+
+.content-text{
+    -fx-text-fill: #07396b; /* Texto en azul oscuro */
+    -fx-font-family: hind;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.action-button {
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-font-weight: regular;
+}
+
+.action-button:hover {
+    -fx-font-weight: bold;
+}
+
+.text-area {
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: black;
+    -fx-background-color: white;
+}
+
+.profile-pane{
+    -fx-background-color: #9999ff;
+
+}
+
+.data-area{
+    /* Podríamos hacer un degradadito o algo, aunque este queda feo */
+    /*-fx-background-color: linear-gradient(#005aa7 0%, #9999ff 20%, #ccccff 100%);*/
+    -fx-background-color: white;
+}
+
+.registrate-button{
+    -fx-background-color: #07396b;
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.registrate-button:pressed {
+    -fx-background-color: #2898ee; /* Cambia el color de fondo cuando se presiona */
+    -fx-text-fill: white; /* Cambia el color del texto cuando se presiona */
+}
+
+.registrate-button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.bg-separation{
+    -fx-background-color: #eee7ff;
+    -fx-background-radius: 10px;
+}
+
+.error-reminder{
+    -fx-text-fill: #ff0000;
+    -fx-font-size:1px;
+}

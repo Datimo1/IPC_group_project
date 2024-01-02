@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="600" prefWidth="800" stylesheets="@fxmlvistainicial-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
 
@@ -112,8 +113,39 @@
                <Label alignment="CENTER" styleClass="title-label" text="POLIGASTOS" />
             <HBox alignment="CENTER_RIGHT" StackPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="imagenPerfil" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#inicioSesion" styleClass="action-button" text="Iniciar sesión/Registrarse" />
+                  <StackPane>
+                     <children>
+                        <HBox fx:id="visionSesionIniciada" alignment="CENTER">
+                           <children>
+                              <Label fx:id="nicknameLabel" style="-fx-font-size: 14; -fx-font-weight: bold;" text="nickUsuario">
+                                 <graphic>
+                                    <ImageView fx:id="imagenPerfil" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/perfil-3-medico.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="configuracionButton" contentDisplay="RIGHT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#configuracion" prefHeight="25.0" prefWidth="25.0" styleClass="action-button">
+                                 <graphic>
+                                    <ImageView fitHeight="82.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/custom-plus-circle.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#inicioSesion" styleClass="action-button" text="Iniciar sesión/Registrarse" visible="false" />
+                     </children>
+                  </StackPane>
                </children>
                <padding>
                   <Insets right="10.0" />

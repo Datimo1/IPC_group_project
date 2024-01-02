@@ -48,7 +48,12 @@
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.rowIndex="1">
                <children>
-                  <TextField HBox.hgrow="ALWAYS" />
+                  <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="nicknameTextField" />
+                        <Label fx:id="nicknameErrorLabel" maxWidth="1.7976931348623157E308" styleClass="error-reminder" text="Usuario no registrado" visible="false" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
@@ -69,19 +74,24 @@
                </GridPane.margin>
             </HBox>
             <HBox alignment="TOP_CENTER" GridPane.rowIndex="3">
-               <children>
-                  <PasswordField HBox.hgrow="ALWAYS" />
-               </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
                <GridPane.margin>
                   <Insets left="15.0" right="15.0" />
                </GridPane.margin>
+               <children>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <PasswordField fx:id="passwordTextField" />
+                        <Label fx:id="passwordErrorLabel" prefWidth="369.0" styleClass="error-reminder" text="Contraseña incorrecta" visible="false" />
+                     </children>
+                  </VBox>
+               </children>
             </HBox>
             <HBox alignment="TOP_RIGHT" GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false" styleClass="action-button" text="Iniciar Sesión" />
+                  <Button fx:id="iniciarSesionButton" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="action-button" text="Iniciar Sesión" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="10.0" />

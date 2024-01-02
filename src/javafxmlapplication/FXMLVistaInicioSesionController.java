@@ -7,15 +7,22 @@ package javafxmlapplication;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Acount;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -26,13 +33,27 @@ public class FXMLVistaInicioSesionController implements Initializable {
 
     @FXML
     private Button registroButton;
+    @FXML
+    private TextField nicknameTextField;
+    @FXML
+    private PasswordField passwordTextField;
+    @FXML
+    private Button iniciarSesionButton;
+    @FXML
+    private Label nicknameErrorLabel;
+    @FXML
+    private Label passwordErrorLabel;
+    
+    private boolean usuarioIniciado = false;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        iniciarSesionButton.disableProperty().bind(
+                Bindings.or(nicknameTextField.textProperty().isEmpty()
+                        , passwordTextField.textProperty().isEmpty()));
     }    
 
     @FXML
@@ -48,6 +69,51 @@ public class FXMLVistaInicioSesionController implements Initializable {
         stage.setTitle("Registrarse");
         stage.setResizable(false);
         stage.showAndWait();
+    }
+
+    @FXML
+    private void iniciarSesion(ActionEvent event) throws AcountDAOException, IOException {
+        if(Acount.getInstance().logInUserByCredentials(nicknameTextField.getText(), 
+                                                            passwordTextField.getText())){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                // ó AlertType.WARNING ó AlertType.ERROR ó AlertType.CONFIRMATION
+            alert.setTitle("Inicio sesión");
+            alert.setHeaderText("Sesión iniciada");
+                // ó null si no queremos cabecera
+            alert.setContentText(null);
+            alert.showAndWait();
+            
+            usuarioIniciado = true;
+            ((Stage)iniciarSesionButton.getScene().getWindow()).close();
+                
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+                // ó AlertType.WARNING ó AlertType.ERROR ó AlertType.CONFIRMATION
+            alert.setTitle("Inicio sesión");
+            String tipoError;
+            if(!Acount.getInstance().existsLogin(nicknameTextField.getText())){
+                tipoError = "Usuario no registrado";
+                nicknameErrorLabel.visibleProperty().set(true);
+                passwordErrorLabel.visibleProperty().set(false);
+                nicknameTextField.setText("");
+                passwordTextField.setText("");
+            }else{
+                tipoError = "Contraseña incorrecta";
+                nicknameErrorLabel.visibleProperty().set(false);
+                passwordErrorLabel.visibleProperty().set(true);
+                passwordTextField.setText("");
+            }
+            alert.setHeaderText(tipoError);
+                // ó null si no queremos cabecera
+            alert.setContentText(null);
+            alert.showAndWait();
+            
+              
+        }
+    }
+
+    boolean getUsuarioIniciado() {
+        return usuarioIniciado;
     }
     
 }

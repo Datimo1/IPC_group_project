@@ -49,3 +49,8 @@
     -fx-highlight-text-fill: black;
     -fx-background-color: white;
 }
+
+.error-reminder{
+    -fx-text-fill: #ff0000;
+    -fx-font-size: 11px;
+}
