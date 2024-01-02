@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -11,6 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -18,7 +23,7 @@
 <BorderPane prefHeight="600" prefWidth="800" stylesheets="@fxmlvistainicial-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaInicialController">
 
     <center>
-        <VBox alignment="CENTER" spacing="20">
+        <VBox alignment="CENTER" spacing="10.0">
          <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="740.0" styleClass="total-expense-container" VBox.vgrow="ALWAYS">
             <children>
                   <!-- Contenido principal aquí -->
@@ -96,7 +101,82 @@
                      </VBox>
                   </children>
                </HBox>
-               <VBox fx:id="vistaGraficas" prefHeight="200.0" prefWidth="100.0" />
+               <VBox fx:id="vistaGraficas" prefHeight="200.0" prefWidth="100.0" visible="false">
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" right="20.0" />
+                  </padding>
+                  <children>
+                     <HBox minHeight="-Infinity" prefWidth="200.0">
+                        <children>
+                           <Button fx:id="comparacion" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarVistaComparacion" text="Comparación mensual" HBox.hgrow="ALWAYS" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Button fx:id="caregorias" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarVistaCategorias" text="Distribución por categorías" HBox.hgrow="SOMETIMES" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Button fx:id="tendencia" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambairVistaTendencia" text="Tendencia mensual" HBox.hgrow="ALWAYS" />
+                        </children>
+                     </HBox>
+                     <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <children>
+                           <HBox fx:id="comparacionVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                              <children>
+                                 <BarChart HBox.hgrow="ALWAYS">
+                                   <xAxis>
+                                     <CategoryAxis side="BOTTOM" />
+                                   </xAxis>
+                                   <yAxis>
+                                     <NumberAxis side="LEFT" />
+                                   </yAxis>
+                                 </BarChart>
+                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Año" />
+                                       <ComboBox fx:id="selectYear" prefWidth="150.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets right="10.0" />
+                              </padding>
+                           </HBox>
+                           <HBox fx:id="categoriasVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0" visible="false">
+                              <children>
+                                 <PieChart HBox.hgrow="ALWAYS" />
+                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Mes" />
+                                       <ComboBox fx:id="selectMonth" prefWidth="150.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets right="10.0" />
+                              </padding>
+                           </HBox>
+                           <HBox fx:id="tendenciaVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0" visible="false">
+                              <children>
+                                 <LineChart HBox.hgrow="ALWAYS">
+                                   <xAxis>
+                                     <CategoryAxis side="BOTTOM" />
+                                   </xAxis>
+                                   <yAxis>
+                                     <NumberAxis side="LEFT" />
+                                   </yAxis>
+                                 </LineChart>
+                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                       <Label minHeight="-Infinity" minWidth="-Infinity" text="Comparar con año:" />
+                                       <ComboBox fx:id="selectYear2" prefWidth="150.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets right="10.0" />
+                              </padding>
+                           </HBox>
+                        </children>
+                     </StackPane>
+                  </children>
+               </VBox>
             </children>
          </StackPane>
         </VBox>

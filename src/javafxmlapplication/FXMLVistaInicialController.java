@@ -84,6 +84,24 @@ public class FXMLVistaInicialController implements Initializable {
     private ComboBox<?> yearFilter;
     @FXML
     private VBox vistaGraficas;
+    @FXML
+    private Button comparacion;
+    @FXML
+    private Button caregorias;
+    @FXML
+    private Button tendencia;
+    @FXML
+    private HBox comparacionVista;
+    @FXML
+    private ComboBox<?> selectYear;
+    @FXML
+    private HBox categoriasVista;
+    @FXML
+    private ComboBox<?> selectMonth;
+    @FXML
+    private HBox tendenciaVista;
+    @FXML
+    private ComboBox<?> selectYear2;
 
     /**
      *
@@ -99,11 +117,15 @@ public class FXMLVistaInicialController implements Initializable {
         addChargeButton.disableProperty().bind(usuarioLogeado.not());
         aPDFButton.disableProperty().bind(usuarioLogeado.not());
         
+        // Vistas menu izquierda
         vistaInicio.visibleProperty().setValue(Boolean.TRUE);
         vistaGastos.visibleProperty().setValue(Boolean.FALSE);
         vistaGraficas.visibleProperty().setValue(Boolean.FALSE);
 
-        
+        // Vistas pagina graficas
+        comparacionVista.visibleProperty().setValue(Boolean.FALSE);
+        categoriasVista.visibleProperty().setValue(Boolean.FALSE);
+        tendenciaVista.visibleProperty().setValue(Boolean.FALSE);
     }    
 
     @FXML
@@ -151,6 +173,31 @@ public class FXMLVistaInicialController implements Initializable {
         vistaInicio.visibleProperty().setValue(Boolean.FALSE);
         vistaGastos.visibleProperty().setValue(Boolean.FALSE);
         vistaGraficas.visibleProperty().setValue(Boolean.TRUE);
+        
+        comparacionVista.visibleProperty().setValue(Boolean.TRUE);
+        categoriasVista.visibleProperty().setValue(Boolean.FALSE);
+        tendenciaVista.visibleProperty().setValue(Boolean.FALSE);
+    }
+
+    @FXML
+    private void cambiarVistaComparacion(ActionEvent event) {
+        comparacionVista.visibleProperty().setValue(Boolean.TRUE);
+        categoriasVista.visibleProperty().setValue(Boolean.FALSE);
+        tendenciaVista.visibleProperty().setValue(Boolean.FALSE);
+    }
+
+    @FXML
+    private void cambiarVistaCategorias(ActionEvent event) {
+        comparacionVista.visibleProperty().setValue(Boolean.FALSE);
+        categoriasVista.visibleProperty().setValue(Boolean.TRUE);
+        tendenciaVista.visibleProperty().setValue(Boolean.FALSE);
+    }
+
+    @FXML
+    private void cambairVistaTendencia(ActionEvent event) {
+        comparacionVista.visibleProperty().setValue(Boolean.FALSE);
+        categoriasVista.visibleProperty().setValue(Boolean.FALSE);
+        tendenciaVista.visibleProperty().setValue(Boolean.TRUE);
     }
     
 }
