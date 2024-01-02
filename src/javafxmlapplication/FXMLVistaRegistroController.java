@@ -99,7 +99,7 @@ public class FXMLVistaRegistroController implements Initializable {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Confirmación de cancelar");
             alerta.setHeaderText(null);
-            alerta.setContentText("Al salir de esta venta, se borrarán todos los datos introducidos.");
+            alerta.setContentText("Al salir de esta venta, se borrarán los datos que hayas introducido.");
 
             Optional<ButtonType> aceptar = alerta.showAndWait();
             if(aceptar.isPresent()){
@@ -155,6 +155,15 @@ public class FXMLVistaRegistroController implements Initializable {
                     Acount.getInstance().registerUser(nombreField.getText(), apellidosField.getText(),
                         correField.getText(), usuarioField.getText(), contrasenyaField.getText(),
                         imagenPerfil, LocalDate.now());
+                    crearCuentaBoton.getScene().getWindow().hide();
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Registrado correctamente");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("Se ha registrado el usuario " + usuarioField.getText() + " correctamente.");
+                    
+                    alerta.show();
+                    
+                    
                 }else{
                     if(!User.checkEmail(correField.getText())){
                         if(usuarioField.getText().equals("")){
@@ -175,7 +184,7 @@ public class FXMLVistaRegistroController implements Initializable {
                     
                     if(!User.checkPassword(contrasenyaField.getText())){
                         if(contrasenyaField.getText().equals("")){
-                            errorContrasenya.setText("Debe tener más de 6 caracteres");
+                            errorContrasenya.setText("Debe tener más de 6 caracteres alphanuméricos");
                         }
                     }
                     

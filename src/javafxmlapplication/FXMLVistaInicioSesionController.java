@@ -62,13 +62,16 @@ public class FXMLVistaInicioSesionController implements Initializable {
         Parent root = loader.load();
         FXMLVistaRegistroController controller = loader.getController();
         
-        Scene scene = new Scene(root);
+        Scene registroScene = new Scene(root);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
+        stage.setScene(registroScene);
         stage.setTitle("Registrarse");
         stage.setResizable(false);
+        stage.centerOnScreen();
         stage.showAndWait();
+        
+        stage.setScene(registroButton.getScene());
     }
 
     @FXML

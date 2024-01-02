@@ -5,6 +5,7 @@
  */
 package javafxmlapplication;
 
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,8 @@ import javafx.stage.Stage;
 
 
 public class JavaFXMLApplication extends Application {
+    
+    private static HashMap<String, Parent> roots = new HashMap();
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -31,6 +34,7 @@ public class JavaFXMLApplication extends Application {
         //     - se muestra el stage de manera no modal mediante el metodo show()
         stage.setScene(scene);
         stage.setTitle("Gestor de gastos");
+        stage.setMaximized(true);
         stage.show();
     }
 

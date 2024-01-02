@@ -15,7 +15,7 @@
 }
 
 .menu:hover{
-    -fx-pref-width:170;
+    -fx-pref-width:190;
 }
 
 .title-label {
@@ -55,4 +55,11 @@
 }
 .action-button:hover {
     -fx-background-color: #6666ff;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.action-button:pressed {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white; /* Cambia el color del texto cuando se presiona */
 }

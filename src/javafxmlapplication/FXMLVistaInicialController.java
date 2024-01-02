@@ -103,6 +103,7 @@ public class FXMLVistaInicialController implements Initializable {
     @FXML
     private ComboBox<?> selectYear2;
 
+     
     /**
      *
      * @param url
@@ -132,14 +133,16 @@ public class FXMLVistaInicialController implements Initializable {
     private void inicioSesion(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaInicioSesion.fxml"));
         Parent root = loader.load();
+        
         FXMLVistaInicioSesionController controller = loader.getController();
         
-        Scene scene = new Scene(root);
+        Scene inicioSesionScene = new Scene(root);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
+        stage.setScene(inicioSesionScene);
         stage.setTitle("Inicio Sesion");
         stage.setResizable(false);
+        stage.centerOnScreen();
         stage.showAndWait();
         if(controller.getUsuarioIniciado()){
             usuarioLogeado.setValue(Boolean.TRUE);
