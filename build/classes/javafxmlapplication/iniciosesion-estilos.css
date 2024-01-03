@@ -71,6 +71,6 @@
 }
 
 .error-reminder{
-    -fx-text-fill: #ff0000;
+    -fx-fill: #ff0000;
     -fx-font-size: 11px;
 }

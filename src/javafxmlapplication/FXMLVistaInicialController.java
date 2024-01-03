@@ -115,7 +115,7 @@ public class FXMLVistaInicialController implements Initializable {
         visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
         
         //Bindings
-        addChargeButton.disableProperty().bind(usuarioLogeado.not());
+        //addChargeButton.disableProperty().bind(usuarioLogeado.not());
         aPDFButton.disableProperty().bind(usuarioLogeado.not());
         
         // Vistas menu izquierda
@@ -127,6 +127,11 @@ public class FXMLVistaInicialController implements Initializable {
         comparacionVista.visibleProperty().setValue(Boolean.FALSE);
         categoriasVista.visibleProperty().setValue(Boolean.FALSE);
         tendenciaVista.visibleProperty().setValue(Boolean.FALSE);
+        
+        //EventHandlers
+        addChargeButton.setOnAction((ev)->{
+            //completar: lanzar registrar gastos fxml
+        });
     }    
 
     @FXML
