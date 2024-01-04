@@ -120,7 +120,7 @@ public class FXMLVistaRegistroController implements Initializable {
         });
         
         contrasenyaField.textProperty().addListener((ob, oldV, newV) -> {
-            if(!User.checkPassword(newV)){
+            if(!checkPassword(newV)){
                 errorContrasenya.setText("Debe tener más de 6 caracteres alphanuméricos");
             }else{
                 errorContrasenya.setText("");
@@ -150,7 +150,7 @@ public class FXMLVistaRegistroController implements Initializable {
             try {
                 if(User.checkEmail(correField.getText())
                 &&User.checkNickName(usuarioField.getText())
-                &&User.checkPassword(contrasenyaField.getText())
+                &&checkPassword(contrasenyaField.getText())
                 &&contrasenyaField.getText().equals(contrasenyaConfirmField.getText())){
                     Acount.getInstance().registerUser(nombreField.getText(), apellidosField.getText(),
                         correField.getText(), usuarioField.getText(), contrasenyaField.getText(),
@@ -182,7 +182,7 @@ public class FXMLVistaRegistroController implements Initializable {
                         
                     }
                     
-                    if(!User.checkPassword(contrasenyaField.getText())){
+                    if(!checkPassword(contrasenyaField.getText())){
                         if(contrasenyaField.getText().equals("")){
                             errorContrasenya.setText("Debe tener más de 6 caracteres alphanuméricos");
                         }
@@ -244,6 +244,32 @@ public class FXMLVistaRegistroController implements Initializable {
             }
         }
         
+    }
+    
+    public static boolean checkPassword(String cadena) {
+        // Verifica la longitud mínima de seis caracteres
+        if (cadena.length() < 6) {
+            return false;
+        }
+
+        // Verifica si la cadena contiene al menos una letra y un número
+        boolean contieneLetra = false;
+        boolean contieneNumero = false;
+
+        for (char caracter : cadena.toCharArray()) {
+            if (Character.isLetter(caracter)) {
+                contieneLetra = true;
+            } else if (Character.isDigit(caracter)) {
+                contieneNumero = true;
+            }
+
+            // Si ya se encontraron una letra y un número, se puede salir del bucle
+            if (contieneLetra && contieneNumero) {
+                break;
+            }
+        }
+
+        return contieneLetra && contieneNumero;
     }
     
 }
