@@ -2,11 +2,21 @@ package javafxmlapplication;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.animation.ScaleTransition;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,9 +36,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import model.Acount;
 import model.AcountDAOException;
+import model.Category;
+import model.Charge;
 
 /**
  * FXML Controller class
@@ -105,6 +116,16 @@ public class FXMLVistaInicialController implements Initializable {
     private HBox tendenciaVista;
     @FXML
     private ComboBox<?> selectYear2;
+    @FXML
+    private TableView<String> tablaCategoriasGasto;
+    @FXML
+    private TableColumn<String, String> categoriaColumna;
+    @FXML
+    private TableColumn<String, String> gastoColumna;
+    @FXML
+    private Label gastoTotalLabel;
+    
+    private SimpleDoubleProperty gastoTotal;
 
      
     /**
@@ -141,6 +162,8 @@ public class FXMLVistaInicialController implements Initializable {
                 //No hace falta su controlador a priori
                 //FXMLVistaInicioSesionController controller = loader.getController();
                 
+                
+                
                 Scene inicioSesionScene = new Scene(root);
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
@@ -150,10 +173,22 @@ public class FXMLVistaInicialController implements Initializable {
                 stage.setResizable(false);
                 stage.centerOnScreen();
                 stage.showAndWait();
+                actualizarModelo();
             } catch (IOException ex) {
                 Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+       
+        //Trabajo de la tabla que recoge los gastos de cada categoria
+        
+        
+        
+        
+        
+        
+        
+        
     }    
 
     @FXML
@@ -178,6 +213,7 @@ public class FXMLVistaInicialController implements Initializable {
             nicknameLabel.setText(Acount.getInstance().getLoggedUser().getNickName());
             imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
             visionSesionIniciada.visibleProperty().setValue(Boolean.TRUE);
+            actualizarModelo();
         }
     }
 
@@ -229,6 +265,63 @@ public class FXMLVistaInicialController implements Initializable {
         comparacionVista.visibleProperty().setValue(Boolean.FALSE);
         categoriasVista.visibleProperty().setValue(Boolean.FALSE);
         tendenciaVista.visibleProperty().setValue(Boolean.TRUE);
+    }
+
+    private void actualizarModelo() {
+        
+        tablaCategoriasGasto.getItems().clear();
+        tablaCategoriasGasto.setItems(null);
+        ObservableList<String> listaObservable = null;
+         
+        List<Charge> listaGastos;
+        try {
+            //Recopilacion del gasto total
+            listaGastos = Acount.getInstance().getUserCharges();
+            double gastoTotalMes = 0;
+            for(Charge i : listaGastos){
+                if(i.getDate().getMonth().equals(LocalDate.now().getMonth()))
+                    gastoTotalMes += i.getCost() * i.getUnits();
+            }
+            gastoTotalLabel.setText(Double.toString(gastoTotalMes));
+            
+            
+            
+            //Tabla de recopilacion de gasto por categoria
+            Map<String,Double> gastosPorCategoria = new HashMap<>();
+            for(Charge i : listaGastos){
+                Double gastoPrevio = gastosPorCategoria.get(i.getCategory().getName());
+                if(gastoPrevio != null){
+                    if(i.getDate().getMonth().equals(LocalDate.now().getMonth()))
+                        gastosPorCategoria.put(i.getCategory().getName(), gastoPrevio + i.getCost() * i.getUnits());
+                }else{
+                    if(i.getDate().getMonth().equals(LocalDate.now().getMonth()))
+                        gastosPorCategoria.put(i.getCategory().getName(), i.getCost() * i.getUnits());
+                }
+            }
+            
+            listaObservable = FXCollections.observableArrayList(gastosPorCategoria.keySet());
+            tablaCategoriasGasto.setItems(listaObservable);
+            categoriaColumna.setCellValueFactory(
+                    categoria -> new SimpleStringProperty(categoria.getValue()));
+            gastoColumna.setCellValueFactory(
+                    categoria -> new SimpleStringProperty(Double.toString(gastosPorCategoria.get(categoria.getValue()))));
+            
+            
+            
+            //Construccion del PieChart
+            tartaCategorias.getData().clear();
+            Set<String> categorias = gastosPorCategoria.keySet();
+            System.out.print(categorias.toArray());
+            categorias.forEach(i -> {
+                tartaCategorias.getData().add(new PieChart.Data(i, gastosPorCategoria.get(i)));
+            }); //System.out.println(tartaCategorias.getData().toArray().toString());
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
     
 }

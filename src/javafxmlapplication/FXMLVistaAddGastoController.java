@@ -12,6 +12,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,6 +83,7 @@ public class FXMLVistaAddGastoController implements Initializable {
     private List<Category> listadoCategoria;
     @FXML
     private Button cancelarButton;
+    private ObservableList<Category> datosListadoCategoria;
 
     /**
      * Initializes the controller class.
@@ -91,10 +94,12 @@ public class FXMLVistaAddGastoController implements Initializable {
             // TODO
             // Crear combobox
             listadoCategoria = Acount.getInstance().getUserCategories();
+            datosListadoCategoria = FXCollections.observableArrayList(listadoCategoria);
             if(listadoCategoria != null){
-                for(int i = 0; i < listadoCategoria.size(); i++){
-                    categoriaCombox.getItems().add(listadoCategoria.get(i));
-                }
+//                for(int i = 0; i < listadoCategoria.size(); i++){
+//                    categoriaCombox.getItems().add(listadoCategoria.get(i));
+//                }
+                  categoriaCombox.setItems(datosListadoCategoria);
             }
             
             
