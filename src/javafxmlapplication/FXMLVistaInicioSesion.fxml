@@ -94,7 +94,7 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" GridPane.rowIndex="4">
                <children>
-                  <Button fx:id="iniciarSesionButton" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="registrate-button" text="Iniciar" />
+                  <Button fx:id="iniciarSesionButton" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="registrate-button" text="Iniciar Sesión" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="10.0" />
@@ -122,7 +122,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Button fx:id="registroButton" mnemonicParsing="false" onAction="#registrarse" styleClass="action-button" text="Registrarse" />
+                  <Button fx:id="registroButton" mnemonicParsing="false" onAction="#registrarse" styleClass="action-button" text="Registrarse" underline="true" />
                </children>
             </VBox>
          </children>

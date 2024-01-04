@@ -20,7 +20,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
          <children>
-            <Label styleClass="title-label" text="Registrar" />
+            <Label styleClass="title-label" text="Registrarse" />
          </children>
       </HBox>
    </top>
@@ -220,7 +220,7 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="563.0" spacing="10.0">
                <children>
                   <Button fx:id="cancelarBoton" mnemonicParsing="false" styleClass="action-button" text="Cancelar" />
-                  <Button fx:id="crearCuentaBoton" mnemonicParsing="false" styleClass="registrate-button" text="Registrar" />
+                  <Button fx:id="crearCuentaBoton" mnemonicParsing="false" styleClass="registrate-button" text="Registrarse" />
                </children>
                <padding>
                   <Insets bottom="5.0" right="25.0" top="5.0" />
