@@ -3,6 +3,8 @@ package javafxmlapplication;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.ScaleTransition;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -115,7 +118,7 @@ public class FXMLVistaInicialController implements Initializable {
         visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
         
         //Bindings
-        //addChargeButton.disableProperty().bind(usuarioLogeado.not());
+        addChargeButton.disableProperty().bind(usuarioLogeado.not());
         aPDFButton.disableProperty().bind(usuarioLogeado.not());
         
         // Vistas menu izquierda
@@ -130,7 +133,26 @@ public class FXMLVistaInicialController implements Initializable {
         
         //EventHandlers
         addChargeButton.setOnAction((ev)->{
-            //completar: lanzar registrar gastos fxml
+            try {
+                //completar: lanzar registrar gastos fxml
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaAddGasto.fxml"));
+                Parent root = loader.load();
+                
+                //No hace falta su controlador a priori
+                //FXMLVistaInicioSesionController controller = loader.getController();
+                
+                Scene inicioSesionScene = new Scene(root);
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(inicioSesionScene);
+                stage.setTitle("Añadir gasto");
+                stage.setResizable(false);
+                stage.centerOnScreen();
+                stage.showAndWait();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }    
 
@@ -143,6 +165,7 @@ public class FXMLVistaInicialController implements Initializable {
         
         Scene inicioSesionScene = new Scene(root);
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(inicioSesionScene);
         stage.setTitle("Inicio Sesion");

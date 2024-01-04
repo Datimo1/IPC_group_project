@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
@@ -64,6 +65,7 @@ public class FXMLVistaInicioSesionController implements Initializable {
         
         Scene registroScene = new Scene(root);
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(registroScene);
         stage.setTitle("Registrarse");

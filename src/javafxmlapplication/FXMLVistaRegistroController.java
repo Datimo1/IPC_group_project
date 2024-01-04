@@ -66,7 +66,7 @@ public class FXMLVistaRegistroController implements Initializable {
     @FXML
     private TextField usuarioField;
     
-    private Image imagenPerfil;
+    private Image imagenPerfil = new Image("/resources/perfil-vacio.png");
     @FXML
     private Text errorUsuario;
     @FXML
