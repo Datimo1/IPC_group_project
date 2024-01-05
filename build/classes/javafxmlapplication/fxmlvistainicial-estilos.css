@@ -63,3 +63,27 @@
     -fx-background-color: #2196f3;
     -fx-text-fill: white; /* Cambia el color del texto cuando se presiona */
 }
+
+.content-text{
+    -fx-text-fill: #07396b; /* Texto en azul oscuro */
+    -fx-font-family: hind;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.registrate-button{
+    -fx-background-color: #07396b;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.registrate-button:pressed {
+    -fx-background-color: #2898ee; /* Cambia el color de fondo cuando se presiona */
+    -fx-text-fill: white; /* Cambia el color del texto cuando se presiona */
+}
+
+.registrate-button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}

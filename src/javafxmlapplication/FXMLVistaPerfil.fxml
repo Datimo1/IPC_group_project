@@ -265,7 +265,7 @@
             </Button>
             <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="logOutButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#logOut" styleClass="registrate-button" text="Cerrar Sesión" />
+                  <Button fx:id="logOutButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #BA1C1C;" styleClass="registrate-button" text="Cerrar Sesión" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" left="30.0" right="30.0" />

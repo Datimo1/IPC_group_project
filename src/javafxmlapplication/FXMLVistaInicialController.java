@@ -27,6 +27,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -81,21 +82,17 @@ public class FXMLVistaInicialController implements Initializable {
     @FXML
     private HBox vistaGastos;
     @FXML
-    private TableView<?> tablaGastos;
+    private TableView<Charge> tablaGastos;
     @FXML
-    private TableColumn<?, ?> nameColumn;
+    private TableColumn<Charge, String> nameColumn;
     @FXML
-    private TableColumn<?, ?> categoryColumn;
+    private TableColumn<Category, String> categoryColumn;
     @FXML
-    private TableColumn<?, ?> costColumn;
+    private TableColumn<Charge, String> costColumn;
     @FXML
-    private TableColumn<?, ?> dateColumn;
+    private TableColumn<Charge, String> dateColumn;
     @FXML
     private ComboBox<?> categoryFIlter;
-    @FXML
-    private ComboBox<?> monthFilter;
-    @FXML
-    private ComboBox<?> yearFilter;
     @FXML
     private VBox vistaGraficas;
     @FXML
@@ -126,6 +123,16 @@ public class FXMLVistaInicialController implements Initializable {
     private Label gastoTotalLabel;
     
     private SimpleDoubleProperty gastoTotal;
+    @FXML
+    private DatePicker initDateFilter;
+    @FXML
+    private DatePicker finDateFilter;
+    @FXML
+    private Button verGastosButton;
+    @FXML
+    private Button editarButton;
+    @FXML
+    private Button eliminarButton;
 
      
     /**
@@ -138,9 +145,16 @@ public class FXMLVistaInicialController implements Initializable {
         inicioSesionButton.visibleProperty().setValue(Boolean.TRUE);
         visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
         
+        vistaInicio.visibleProperty().setValue(Boolean.TRUE);
+        vistaGastos.visibleProperty().setValue(Boolean.FALSE);
+        vistaGraficas.visibleProperty().setValue(Boolean.FALSE);
+        
         //Bindings
         addChargeButton.disableProperty().bind(usuarioLogeado.not());
         aPDFButton.disableProperty().bind(usuarioLogeado.not());
+        inicioButton.disableProperty().bind(usuarioLogeado.not());
+        listaButton.disableProperty().bind(usuarioLogeado.not());
+        graficasButton.disableProperty().bind(usuarioLogeado.not());
         
         // Vistas menu izquierda
         vistaInicio.visibleProperty().setValue(Boolean.TRUE);
@@ -353,5 +367,7 @@ public class FXMLVistaInicialController implements Initializable {
         
         
     }
+    
+    
     
 }

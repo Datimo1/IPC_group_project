@@ -38,7 +38,7 @@ public class FXMLVistaNuevaCategoriaController implements Initializable {
     @FXML
     private TextArea descripcionArea;
     
-    private boolean anyadirPressed = false;
+    private boolean anyadido = false;
     
     
     public void initialize(URL url, ResourceBundle rb) {
@@ -47,10 +47,11 @@ public class FXMLVistaNuevaCategoriaController implements Initializable {
             if(!tituloField.getText().isEmpty() && !descripcionArea.getText().isEmpty()){
                 try {
                     Acount.getInstance().registerCategory(tituloField.getText(), descripcionArea.getText());
-                    anyadirPressed = true;
+                    anyadido = true;
                     anyadirButton.getScene().getWindow().hide();
                 } catch (AcountDAOException ex) {
-                    Logger.getLogger(FXMLVistaNuevaCategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(FXMLVistaNuevaCategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+                    tituloError.setText("Ya existe esta categoría");
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLVistaNuevaCategoriaController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -90,8 +91,8 @@ public class FXMLVistaNuevaCategoriaController implements Initializable {
         return tituloField.getText();
     }
 
-    protected boolean isAnyadirPressed() {
-        return anyadirPressed;
+    protected boolean isAnyadido() {
+        return anyadido;
     }
     
     

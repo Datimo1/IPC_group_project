@@ -266,9 +266,10 @@ public class FXMLVistaAddGastoController implements Initializable {
                 stage.centerOnScreen();
                 stage.showAndWait();
                 
-                if(controller.isAnyadirPressed()){
+                if(controller.isAnyadido()){
                     listadoCategoria = Acount.getInstance().getUserCategories();
-                    categoriaCombox.getItems().add(listadoCategoria.get(listadoCategoria.size() - 1));
+                    datosListadoCategoria = FXCollections.observableArrayList(listadoCategoria);
+                    categoriaCombox.setItems(datosListadoCategoria);
                 }
                 
             } catch (IOException ex) {
