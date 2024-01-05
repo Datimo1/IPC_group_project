@@ -218,7 +218,37 @@ public class FXMLVistaInicialController implements Initializable {
     }
 
     @FXML
-    private void configuracion(ActionEvent event) {
+    private void configuracion(ActionEvent event) throws IOException, AcountDAOException{
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaPerfil.fxml"));
+        Parent root = loader.load();
+        
+        FXMLVistaPerfilController controller = loader.getController();
+        controller.setUsuario(Acount.getInstance().getLoggedUser());
+        
+        Scene inicioSesionScene = new Scene(root);
+        Stage stage = new Stage();
+        stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(inicioSesionScene);
+        stage.setTitle("Perfil");
+        stage.setResizable(false);
+        stage.centerOnScreen();
+        stage.showAndWait();
+        
+        if(controller.getUsuarioIniciado()){
+            usuarioLogeado.setValue(Boolean.TRUE);
+            inicioSesionButton.visibleProperty().setValue(Boolean.FALSE);
+            nicknameLabel.setText(Acount.getInstance().getLoggedUser().getNickName());
+            imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
+            visionSesionIniciada.visibleProperty().setValue(Boolean.TRUE);
+            actualizarModelo();
+        }else{
+            usuarioLogeado.setValue(Boolean.FALSE);
+            inicioSesionButton.visibleProperty().setValue(Boolean.TRUE);
+            visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
+            //Acount.getInstance().logOutUser();
+            actualizarModelo();
+        }
     }
 
     @FXML
