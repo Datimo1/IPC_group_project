@@ -36,8 +36,8 @@
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="27.60001411437988" minHeight="10.0" prefHeight="18.799995803833006" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="56.40000419616698" minHeight="10.0" prefHeight="48.8" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="48.2" minHeight="0.0" prefHeight="32.00001220703125" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="56.99998168945312" minHeight="10.0" prefHeight="56.99998168945312" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="48.2" minHeight="0.0" prefHeight="26.600018310546872" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="110.19997558593748" minHeight="10.0" prefHeight="56.799987792968764" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
@@ -52,17 +52,26 @@
                               <Insets left="15.0" right="15.0" />
                            </GridPane.margin>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" GridPane.rowIndex="1">
-                           <children>
-                              <TextField fx:id="nombreField" HBox.hgrow="ALWAYS" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
-                           </padding>
+                        <VBox GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="15.0" right="15.0" />
                            </GridPane.margin>
-                        </HBox>
+                           <children>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <TextField fx:id="nombreField" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <Label fx:id="errorNombre" styleClass="error-reminder">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
                         <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="content-text" GridPane.rowIndex="2">
                            <children>
                               <Label styleClass="content-text" text="Correo electrónico" />
@@ -99,17 +108,26 @@
                               <Insets top="5.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <TextField fx:id="apellidosField" HBox.hgrow="ALWAYS" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
-                           </padding>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="15.0" right="15.0" />
                            </GridPane.margin>
-                        </HBox>
+                           <children>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <TextField fx:id="apellidosField" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <Label fx:id="errorApellido" styleClass="error-reminder">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
                   </GridPane>
                </children>

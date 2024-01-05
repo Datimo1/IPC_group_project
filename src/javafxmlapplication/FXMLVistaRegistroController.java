@@ -22,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxListCell;
@@ -75,6 +76,10 @@ public class FXMLVistaRegistroController implements Initializable {
     private Text errorConfirmacion;
     @FXML
     private Text errorCorreo;
+    @FXML
+    private Label errorNombre;
+    @FXML
+    private Label errorApellido;
 
     /**
      * Initializes the controller class.
@@ -145,13 +150,26 @@ public class FXMLVistaRegistroController implements Initializable {
                 errorCorreo.setText("");
             }
         });
+        
+        nombreField.focusedProperty().addListener((ob, oldV, newV)->{
+            if(newV){
+                errorNombre.setText("");
+            }
+        });
+        
+        apellidosField.focusedProperty().addListener((ob, oldV, newV)->{
+            if(newV){
+                errorApellido.setText("");
+            }
+        });
                 
         crearCuentaBoton.setOnAction(v->{
             try {
                 if(User.checkEmail(correField.getText())
                 &&User.checkNickName(usuarioField.getText())
                 &&checkPassword(contrasenyaField.getText())
-                &&contrasenyaField.getText().equals(contrasenyaConfirmField.getText())){
+                &&contrasenyaField.getText().equals(contrasenyaConfirmField.getText())
+                && !nombreField.getText().isEmpty() && !apellidosField.getText().isEmpty()){
                     Acount.getInstance().registerUser(nombreField.getText(), apellidosField.getText(),
                         correField.getText(), usuarioField.getText(), contrasenyaField.getText(),
                         imagenPerfil, LocalDate.now());
@@ -191,6 +209,14 @@ public class FXMLVistaRegistroController implements Initializable {
                     if(!contrasenyaField.getText().equals(contrasenyaConfirmField.getText())){
                         errorConfirmacion.setText("Contraseña diferente");
                         
+                    }
+                    
+                    if(nombreField.getText().isEmpty()){
+                        errorNombre.setText("Introduzca su nombre");
+                    }
+                    
+                    if(apellidosField.getText().isEmpty()){
+                        errorApellido.setText("Introduzca sus apellidos");
                     }
                 }
                 

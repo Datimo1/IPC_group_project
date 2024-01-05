@@ -1,5 +1,7 @@
 package javafxmlapplication;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -19,6 +21,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,14 +41,21 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 
 /**
  * FXML Controller class
@@ -214,6 +224,65 @@ public class FXMLVistaInicialController implements Initializable {
                 stage.centerOnScreen();
                 stage.showAndWait();
                 actualizarModelo();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        //Crear pdf a partir de una captura de un nodo JavaFX
+        aPDFButton.setOnAction((ev)->{
+            try {
+                // Cargar el FXML
+                //
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLVistaReportePDF.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                
+//                Stage stage = new Stage();
+//                stage.setScene(scene);
+//                stage.setTitle("FXML to PDF Converter");
+//                stage.show();
+                
+                // Crear un archivo PDF
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Guardar PDF");
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos PDF (*.pdf)", "*.pdf");
+                fileChooser.getExtensionFilters().add(extFilter);
+                File file = fileChooser.showSaveDialog(new Stage());
+                
+                if (file != null) {
+                    PDDocument document = new PDDocument();
+                    PDPage page = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
+                    document.addPage(page);
+                    
+                    // Renderizar la escena en un BufferedImage
+                    WritableImage snapshot = scene.snapshot(null);
+                    try {
+                        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+                        
+                        // Guardar el BufferedImage como PDF usando Apache PDFBox
+                        //ImageIO.write(bufferedImage, "png", file); // Convertir la imagen a un formato compatible con PDF
+
+                        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+                        float pageWidth = page.getMediaBox().getWidth();
+                        float pageHeight = page.getMediaBox().getHeight();
+                        float imageWidth = bufferedImage.getWidth();
+                        float imageHeight = bufferedImage.getHeight();
+
+                        float startX = (pageWidth - imageWidth) / 2; // Calcular la posición X centrada
+                        float startY = (pageHeight - imageHeight) / 2; // Calcular la posición Y centrada
+                        contentStream.drawImage(LosslessFactory.createFromImage(document, bufferedImage), startX, startY);
+                        contentStream.close();
+                        
+                        document.save(file);
+                        document.close();
+                        System.out.println("FXML convertido a PDF correctamente en " + file.getAbsolutePath());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                
+                //stage.close();
             } catch (IOException ex) {
                 Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
             }
