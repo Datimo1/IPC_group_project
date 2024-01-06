@@ -288,6 +288,8 @@ public class FXMLVistaInicialController implements Initializable {
             }
         });
         
+        categoryFIlter.setCellFactory(c->new ComboCelda());
+        categoryFIlter.setButtonCell(new ComboCelda());
         
         //Listeners
         categoryFIlter.valueProperty().addListener((c,old,nw)->{try {
@@ -508,11 +510,8 @@ public class FXMLVistaInicialController implements Initializable {
 //                for(int i = 0; i < listadoCategoria.size(); i++){
 //                    categoriaCombox.getItems().add(listadoCategoria.get(i));
 //                }
-                  
                   categoryFIlter.setItems(datosListadoCategoria);
             }
-            categoryFIlter.setCellFactory(c->new ComboCelda());
-            categoryFIlter.setButtonCell(new ComboCelda());
             
             ObservableList<Charge> listaObservableGastos = 
                     FXCollections.observableArrayList(Acount.getInstance().getUserCharges());

@@ -67,7 +67,7 @@ public class FXMLVistaNuevaCategoriaController implements Initializable {
                     }
             }
         });
-        
+                
         cancelarButton.setOnAction((ev)->{
             cancelarButton.getScene().getWindow().hide();
         });
