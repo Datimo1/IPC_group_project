@@ -88,7 +88,7 @@
                      <Insets left="20.0" right="20.0" />
                   </padding>
                </VBox>
-               <HBox fx:id="vistaGastos" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefHeight="64.0" prefWidth="740.0">
+               <HBox fx:id="vistaGastos" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefHeight="64.0" prefWidth="740.0" visible="false">
                   <children>
                      <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                         <children>
@@ -160,19 +160,19 @@
                      <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                   </padding>
                </HBox>
-               <VBox fx:id="vistaGraficas" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <VBox fx:id="vistaGraficas" prefHeight="200.0" prefWidth="100.0">
                   <padding>
                      <Insets bottom="10.0" left="20.0" right="20.0" />
                   </padding>
                   <children>
                      <HBox minHeight="-Infinity" prefWidth="200.0">
                         <children>
-                           <Button fx:id="comparacion" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarVistaComparacion" styleClass="registrate-button" text="Comparación mensual" HBox.hgrow="ALWAYS">
+                           <Button fx:id="comparacion" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarVistaComparacion" prefWidth="50.0" styleClass="registrate-button" text="Comparación mensual" HBox.hgrow="ALWAYS">
                               <HBox.margin>
                                  <Insets bottom="10.0" />
                               </HBox.margin></Button>
                            <Region HBox.hgrow="ALWAYS" />
-                           <Button fx:id="tendencia" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambairVistaTendencia" styleClass="registrate-button" text="Tendencia mensual" HBox.hgrow="ALWAYS" />
+                           <Button fx:id="tendencia" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambairVistaTendencia" prefWidth="50.0" styleClass="registrate-button" text="Tendencia mensual" HBox.hgrow="ALWAYS" />
                         </children>
                      </HBox>
                      <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">

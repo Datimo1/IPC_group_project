@@ -306,6 +306,55 @@ public class FXMLVistaInicialController implements Initializable {
             }
         });
         
+        editarButton.setOnAction((ev) -> {
+            try {
+                //completar: lanzar registrar gastos fxml
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaModGasto.fxml"));
+                Parent root = loader.load();
+                FXMLVistaModGastoController controller = loader.getController();
+                
+                Scene inicioSesionScene = new Scene(root);
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(inicioSesionScene);
+                stage.setTitle("Editar gasto");
+                stage.setResizable(false);
+                stage.centerOnScreen();
+                controller.setCharge(tablaGastos.getSelectionModel().getSelectedItem());
+                stage.showAndWait();
+                if(controller.seModifico()){
+                    actualizarModelo();
+                    graficarTablaDosMeses();
+                    graficarTablaMesesAnos();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        verGastosButton.setOnAction((ev) -> {
+            try {
+                //completar: lanzar registrar gastos fxml
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaVerGasto.fxml"));
+                Parent root = loader.load();
+                FXMLVistaVerGastoController controller = loader.getController();
+                
+                Scene inicioSesionScene = new Scene(root);
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(inicioSesionScene);
+                stage.setTitle("Ver gasto");
+                stage.setResizable(false);
+                stage.centerOnScreen();
+                controller.setCharge(tablaGastos.getSelectionModel().getSelectedItem());
+                stage.showAndWait();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
         categoryFIlter.setCellFactory(c->new ComboCelda());
         categoryFIlter.setButtonCell(new ComboCelda());
         
@@ -479,7 +528,8 @@ public class FXMLVistaInicialController implements Initializable {
             listaGastos = Acount.getInstance().getUserCharges();
             double gastoTotalMes = 0;
             for(Charge i : listaGastos){
-                if(i.getDate().getMonth().equals(LocalDate.now().getMonth()))
+                if(i.getDate().getMonth().equals(LocalDate.now().getMonth())
+                   && i.getDate().getYear() == LocalDate.now().getYear())
                     gastoTotalMes += i.getCost() * i.getUnits();
             }
             gastoTotalLabel.setText(Double.toString(gastoTotalMes));
@@ -491,10 +541,12 @@ public class FXMLVistaInicialController implements Initializable {
             for(Charge i : listaGastos){
                 Double gastoPrevio = gastosPorCategoria.get(i.getCategory().getName());
                 if(gastoPrevio != null){
-                    if(i.getDate().getMonth().equals(LocalDate.now().getMonth()))
+                    if(i.getDate().getMonth().equals(LocalDate.now().getMonth())
+                       && i.getDate().getYear() == LocalDate.now().getYear())
                         gastosPorCategoria.put(i.getCategory().getName(), gastoPrevio + i.getCost() * i.getUnits());
                 }else{
-                    if(i.getDate().getMonth().equals(LocalDate.now().getMonth()))
+                    if(i.getDate().getMonth().equals(LocalDate.now().getMonth())
+                       && i.getDate().getYear() == LocalDate.now().getYear())
                         gastosPorCategoria.put(i.getCategory().getName(), i.getCost() * i.getUnits());
                 }
             }
@@ -621,9 +673,9 @@ public class FXMLVistaInicialController implements Initializable {
 
     @FXML
     private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
+        Acount.getInstance().removeCharge(tablaGastos.getSelectionModel().getSelectedItem());
         tablaGastos.getItems().remove(tablaGastos.getSelectionModel().getSelectedItem());
         tablaGastos.getSelectionModel().select(-1);
-        Acount.getInstance().removeCharge(tablaGastos.getSelectionModel().getSelectedItem());
         actualizarModelo();
         graficarTablaDosMeses();
         graficarTablaMesesAnos();

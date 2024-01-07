@@ -117,6 +117,9 @@ public class FXMLVistaAddGastoController implements Initializable {
                     if (!tituloField.getText().isEmpty() && fechaSelector.getValue() != null
                             && categoriaCombox.getValue() != null && !costeField.getText().isEmpty()
                             && !descriptionArea.getText().isEmpty() && !unidadesField.getText().isEmpty()) {
+                        if(facturaImagen == null){
+                            facturaImagen = new Image("/resources/document-empty.png");
+                        }
                         Acount.getInstance().registerCharge(tituloField.getText(), descriptionArea.getText(),
                                 Double.parseDouble(costeField.getText()), Integer.parseInt(unidadesField.getText()),
                                 facturaImagen, fechaSelector.getValue(), categoriaCombox.getValue());

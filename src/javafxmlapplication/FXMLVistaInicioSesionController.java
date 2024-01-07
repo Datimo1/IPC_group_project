@@ -84,6 +84,7 @@ public class FXMLVistaInicioSesionController implements Initializable {
             alert.setHeaderText("Sesión iniciada");
                 // ó null si no queremos cabecera
             alert.setContentText(null);
+            ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/resources/icono-aplicacion.png"));
             
             String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
             alert.getDialogPane().getStylesheets().add(css);
@@ -97,6 +98,7 @@ public class FXMLVistaInicioSesionController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
                 // ó AlertType.WARNING ó AlertType.ERROR ó AlertType.CONFIRMATION
             alert.setTitle("Inicio sesión");
+            ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/resources/icono-aplicacion.png"));
             String tipoError;
             if(!Acount.getInstance().existsLogin(nicknameTextField.getText())){
                 tipoError = "Usuario no registrado";

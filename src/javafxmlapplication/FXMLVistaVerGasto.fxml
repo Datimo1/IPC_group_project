@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="385.0" prefWidth="764.0" stylesheets="@iniciosesion-estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLVistaVerGastoController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="header" BorderPane.alignment="CENTER">
+         <children>
+            <Label minWidth="-Infinity" styleClass="title-label" text="Ver Gasto" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <center>
+      <GridPane prefHeight="339.0" prefWidth="626.0" styleClass="content" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="255.20002441406254" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.6" minWidth="10.0" prefWidth="243.19997558593752" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.39998779296877" minWidth="10.0" prefWidth="206.39998779296877" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="49.59997406005859" minHeight="10.0" prefHeight="49.59997406005859" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="87.19998779296876" minHeight="10.0" prefHeight="64.00001220703126" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="156.8" minHeight="10.0" prefHeight="104.80001525878905" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="231.19998779296873" minHeight="10.0" prefHeight="58.39998474121094" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox alignment="BOTTOM_LEFT">
+               <children>
+                  <Label fx:id="tituloLabel" minWidth="-Infinity" prefHeight="38.0" prefWidth="222.0" style="-fx-text-fill: #07396b; -fx-font-weight: bold; -fx-font-size: 26;" text="Título">
+                     <font>
+                        <Font size="26.0" />
+                     </font></Label>
+               </children>
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="192.0" prefWidth="155.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
+               <children>
+                  <Text fx:id="tituloError" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="error-reminder">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <ImageView fx:id="profileImage" fitHeight="145.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/document-empty.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="2">
+               <children>
+                  <Label style="-fx-text-fill: #07396b; -fx-font-weight: bold;" text="Fecha: " />
+                  <Label fx:id="fechaLabel" minWidth="-Infinity" prefHeight="26.0" prefWidth="104.0" style="-fx-text-fill: #07396b;" text="Fecha" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="25.0" right="15.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </HBox>
+            <VBox prefHeight="167.0" prefWidth="356.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+               <GridPane.margin>
+                  <Insets left="25.0" right="15.0" />
+               </GridPane.margin>
+               <children>
+                  <Label style="-fx-text-fill: #07396b; -fx-font-weight: bold;" text="Descripción:" />
+                  <Label fx:id="descripcionLabel" alignment="TOP_LEFT" minWidth="-Infinity" prefHeight="154.0" prefWidth="355.0" style="-fx-text-fill: #07396b;" text="Descripción" />
+                  <Separator prefWidth="200.0" style="-fx-background-color: #07396b;" />
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1">
+               <children>
+                  <Label style="-fx-text-fill: #07396b; -fx-font-weight: bold;" text="Categoría: " />
+                  <Label fx:id="categoriaLabel" minWidth="-Infinity" prefHeight="26.0" prefWidth="110.0" style="-fx-text-fill: #07396b;" text="Categoría" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="25.0" right="15.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="125.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label style="-fx-text-fill: #07396b; -fx-font-weight: bold;" text="Coste:" />
+                  <Label fx:id="costeLabel" minWidth="-Infinity" prefHeight="26.0" prefWidth="137.0" style="-fx-text-fill: #07396b;" text="Coste" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="10.0" right="15.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <Label style="-fx-text-fill: #07396b; -fx-font-weight: bold;" text="Unidades:" />
+                  <Label fx:id="unidadesLabel" style="-fx-text-fill: #07396b;" text="Unidades" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="30.0" right="30.0" />
+         </padding>
+      </GridPane>
+   </center>
+
+</BorderPane>
