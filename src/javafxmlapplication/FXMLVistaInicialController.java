@@ -175,6 +175,10 @@ public class FXMLVistaInicialController implements Initializable {
         borrarModelo();
         tablaConstruida = false;
         selectYear.setValue(LocalDate.now().getYear());
+        int anoActual = LocalDate.now().getYear();
+        selectYear2.setItems(
+                    FXCollections.observableArrayList(
+                            anoActual-1,anoActual-2,anoActual-3,anoActual-4,anoActual-5));
         selectYear2.setValue(LocalDate.now().getYear()-1);
         
         inicioSesionButton.visibleProperty().setValue(Boolean.TRUE);
@@ -199,6 +203,8 @@ public class FXMLVistaInicialController implements Initializable {
         (Bindings.equal(tablaGastos.getSelectionModel().selectedIndexProperty(), -1));
         eliminarButton.disableProperty().bind
         (Bindings.equal(tablaGastos.getSelectionModel().selectedIndexProperty(), -1));
+        comparacion.disableProperty().bind(usuarioLogeado.not());
+        tendencia.disableProperty().bind(usuarioLogeado.not());
         
         // Vistas menu izquierda
         vistaInicio.visibleProperty().setValue(Boolean.TRUE);
@@ -333,7 +339,8 @@ public class FXMLVistaInicialController implements Initializable {
             graficarTablaMesesAnos();
         });
         selectYear2.valueProperty().addListener((c,d,e)->{
-            graficarTablaDosMeses();
+            if(selectYear2.getValue()!=null)
+                graficarTablaDosMeses();
         });
         
         
@@ -640,9 +647,7 @@ public class FXMLVistaInicialController implements Initializable {
             int anoActual = LocalDate.now().getYear();
             
             //Tabla de recopilacion de gasto por mes
-            selectYear2.setItems(
-                    FXCollections.observableArrayList(
-                            anoActual-1,anoActual-2,anoActual-3,anoActual-4,anoActual-5));
+            
             
             Map<Month,Double> gastosPorMesActual = new HashMap<>();
             Map<Month,Double> gastosPorMesOtroAno = new HashMap<>();
