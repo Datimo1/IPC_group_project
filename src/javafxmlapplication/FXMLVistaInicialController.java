@@ -336,7 +336,8 @@ public class FXMLVistaInicialController implements Initializable {
 });
         
         selectYear.valueProperty().addListener((c,d,e)->{
-            graficarTablaMesesAnos();
+            if(selectYear.getValue()!=null)
+                graficarTablaDosMeses();
         });
         selectYear2.valueProperty().addListener((c,d,e)->{
             if(selectYear2.getValue()!=null)
