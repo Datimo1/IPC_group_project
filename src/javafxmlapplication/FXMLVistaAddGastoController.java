@@ -46,8 +46,6 @@ import model.Category;
 public class FXMLVistaAddGastoController implements Initializable {
 
     @FXML
-    private Button newCatButton;
-    @FXML
     private Button facturaButton;
     @FXML
     private ImageView profileImage;
@@ -84,6 +82,9 @@ public class FXMLVistaAddGastoController implements Initializable {
     @FXML
     private Button cancelarButton;
     private ObservableList<Category> datosListadoCategoria;
+    @FXML
+    private Button newCatButton;
+    private boolean seAnadio;
 
     /**
      * Initializes the controller class.
@@ -92,6 +93,7 @@ public class FXMLVistaAddGastoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
+            seAnadio = false;
             // Crear combobox
             listadoCategoria = Acount.getInstance().getUserCategories();
             datosListadoCategoria = FXCollections.observableArrayList(listadoCategoria);
@@ -118,6 +120,7 @@ public class FXMLVistaAddGastoController implements Initializable {
                         Acount.getInstance().registerCharge(tituloField.getText(), descriptionArea.getText(),
                                 Double.parseDouble(costeField.getText()), Integer.parseInt(unidadesField.getText()),
                                 facturaImagen, fechaSelector.getValue(), categoriaCombox.getValue());
+                        seAnadio = true;
                         addButton.getScene().getWindow().hide();
                     }else{
                         //mensajes de error si faltan algunos campos
@@ -226,7 +229,6 @@ public class FXMLVistaAddGastoController implements Initializable {
     }
     
     @FXML
-    //Ya funciona jeje
     private void pickImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar Imagen");
@@ -277,6 +279,9 @@ public class FXMLVistaAddGastoController implements Initializable {
             }
     }
 
+    public boolean seAnadio(){
+        return seAnadio;
+    }
     
     private static class ComboCelda extends ComboBoxListCell<Category>{
 

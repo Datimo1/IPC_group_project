@@ -94,10 +94,10 @@
                         <children>
                            <TableView fx:id="tablaGastos" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                               <columns>
-                                 <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" prefWidth="172.80003356933594" text="Título" />
-                                 <TableColumn fx:id="categoryColumn" maxWidth="1.7976931348623157E308" prefWidth="144.79998779296875" text="Categoría" />
-                                 <TableColumn fx:id="costColumn" maxWidth="1.7976931348623157E308" prefWidth="79.20001220703125" text="Coste" />
-                                 <TableColumn fx:id="dateColumn" maxWidth="1.7976931348623157E308" prefWidth="184.0" text="Fecha" />
+                                 <TableColumn fx:id="nameColumn" maxWidth="135.0" prefWidth="118.0" text="Título" />
+                                 <TableColumn fx:id="categoryColumn" maxWidth="124.66667175292969" minWidth="0.0" prefWidth="17.0" text="Categoría" />
+                                 <TableColumn fx:id="costColumn" maxWidth="127.33334350585938" prefWidth="127.33334350585938" text="Coste" />
+                                 <TableColumn fx:id="dateColumn" maxWidth="181.0" prefWidth="181.0" text="Fecha" />
                               </columns>
                               <columnResizePolicy>
                                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -172,8 +172,6 @@
                                  <Insets bottom="10.0" />
                               </HBox.margin></Button>
                            <Region HBox.hgrow="ALWAYS" />
-                           <Button fx:id="caregorias" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarVistaCategorias" styleClass="registrate-button" text="Distribución por categorías" HBox.hgrow="SOMETIMES" />
-                           <Region HBox.hgrow="ALWAYS" />
                            <Button fx:id="tendencia" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambairVistaTendencia" styleClass="registrate-button" text="Tendencia mensual" HBox.hgrow="ALWAYS" />
                         </children>
                      </HBox>
@@ -181,7 +179,7 @@
                         <children>
                            <HBox fx:id="comparacionVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                               <children>
-                                 <BarChart fx:id="tablaComparacionMeses" HBox.hgrow="ALWAYS">
+                                 <BarChart fx:id="tablaComparacionMeses" legendVisible="false" HBox.hgrow="ALWAYS">
                                    <xAxis>
                                      <CategoryAxis side="BOTTOM" />
                                    </xAxis>
@@ -216,7 +214,7 @@
                            </HBox>
                            <HBox fx:id="tendenciaVista" prefHeight="100.0" prefWidth="200.0" spacing="15.0" visible="false">
                               <children>
-                                 <LineChart HBox.hgrow="ALWAYS">
+                                 <LineChart fx:id="graficaLinealTendencia" HBox.hgrow="ALWAYS">
                                    <xAxis>
                                      <CategoryAxis side="BOTTOM" />
                                    </xAxis>

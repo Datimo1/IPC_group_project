@@ -29,6 +29,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
@@ -127,7 +128,7 @@ public class FXMLVistaInicialController implements Initializable {
     @FXML
     private HBox tendenciaVista;
     @FXML
-    private ComboBox<?> selectYear2;
+    private ComboBox<Integer> selectYear2;
     @FXML
     private TableView<String> tablaCategoriasGasto;
     @FXML
@@ -154,6 +155,11 @@ public class FXMLVistaInicialController implements Initializable {
     private Button eliminarButton1;
     @FXML
     private BarChart<String, Double> tablaComparacionMeses;
+    @FXML
+    private LineChart<String, Double> graficaLinealTendencia;
+    private boolean vistaComparacionVisible;
+    private boolean vistaTendencia;
+    private boolean vistaTendenciaVisible;
 
      
     /**
@@ -168,6 +174,8 @@ public class FXMLVistaInicialController implements Initializable {
         //Asegurarse que el modelo esta vacio
         borrarModelo();
         tablaConstruida = false;
+        selectYear.setValue(LocalDate.now().getYear());
+        selectYear2.setValue(LocalDate.now().getYear()-1);
         
         inicioSesionButton.visibleProperty().setValue(Boolean.TRUE);
         visionSesionIniciada.visibleProperty().setValue(Boolean.FALSE);
@@ -209,8 +217,8 @@ public class FXMLVistaInicialController implements Initializable {
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaAddGasto.fxml"));
                 Parent root = loader.load();
                 
-                //No hace falta su controlador a priori
-                //FXMLVistaInicioSesionController controller = loader.getController();
+               
+                FXMLVistaAddGastoController controller = loader.getController();
                 
                 
                 
@@ -223,7 +231,11 @@ public class FXMLVistaInicialController implements Initializable {
                 stage.setResizable(false);
                 stage.centerOnScreen();
                 stage.showAndWait();
-                actualizarModelo();
+                if(controller.seAnadio()){
+                    actualizarModelo();
+                    graficarTablaDosMeses();
+                    graficarTablaMesesAnos();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -317,6 +329,13 @@ public class FXMLVistaInicialController implements Initializable {
             }
 });
         
+        selectYear.valueProperty().addListener((c,d,e)->{
+            graficarTablaMesesAnos();
+        });
+        selectYear2.valueProperty().addListener((c,d,e)->{
+            graficarTablaDosMeses();
+        });
+        
         
     }    
 
@@ -344,7 +363,7 @@ public class FXMLVistaInicialController implements Initializable {
             visionSesionIniciada.visibleProperty().setValue(Boolean.TRUE);
             actualizarModelo();
             graficarTablaMesesAnos();
-            
+            graficarTablaDosMeses();
         }
     }
 
@@ -412,7 +431,12 @@ public class FXMLVistaInicialController implements Initializable {
         comparacionVista.visibleProperty().setValue(Boolean.TRUE);
         categoriasVista.visibleProperty().setValue(Boolean.FALSE);
         tendenciaVista.visibleProperty().setValue(Boolean.FALSE);
-        graficarTablaMesesAnos();
+        if(!vistaComparacionVisible){
+            graficarTablaMesesAnos();
+            vistaComparacionVisible = true;
+            vistaTendenciaVisible = false;
+        }
+        
     }
 
     @FXML
@@ -427,6 +451,11 @@ public class FXMLVistaInicialController implements Initializable {
         comparacionVista.visibleProperty().setValue(Boolean.FALSE);
         categoriasVista.visibleProperty().setValue(Boolean.FALSE);
         tendenciaVista.visibleProperty().setValue(Boolean.TRUE);
+        if(!vistaTendenciaVisible){
+            graficarTablaDosMeses();
+            vistaComparacionVisible = false;
+            vistaTendenciaVisible = true;
+        }
         
     }
 
@@ -554,6 +583,28 @@ public class FXMLVistaInicialController implements Initializable {
 
     @FXML
     private void verGasto(ActionEvent event) {
+        try {
+                //completar: lanzar registrar gastos fxml
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("FXMLVistaGasto.fxml"));
+                Parent root = loader.load();
+                
+                //No hace falta su controlador a priori
+                //FXMLVistaInicioSesionController controller = loader.getController();
+                
+                
+                
+                Scene inicioSesionScene = new Scene(root);
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image("/resources/icono-aplicacion.png"));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(inicioSesionScene);
+                stage.setTitle("Visualizar Gasto");
+                stage.setResizable(false);
+                stage.centerOnScreen();
+                stage.showAndWait();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     @FXML
@@ -562,10 +613,12 @@ public class FXMLVistaInicialController implements Initializable {
 
     @FXML
     private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
-//        tablaGastos.getItems().remove(tablaGastos.getSelectionModel().getSelectedItem());
-//        tablaGastos.getSelectionModel().select(-1);
-//        Acount.getInstance().removeCharge(tablaGastos.getSelectionModel().getSelectedItem());
-//        actualizarModelo();
+        tablaGastos.getItems().remove(tablaGastos.getSelectionModel().getSelectedItem());
+        tablaGastos.getSelectionModel().select(-1);
+        Acount.getInstance().removeCharge(tablaGastos.getSelectionModel().getSelectedItem());
+        actualizarModelo();
+        graficarTablaDosMeses();
+        graficarTablaMesesAnos();
    }
 
     @FXML
@@ -576,7 +629,58 @@ public class FXMLVistaInicialController implements Initializable {
         filtrarTabla();
     }
 
+    
     private void graficarTablaDosMeses() {
+        graficaLinealTendencia.getData().clear();
+        List<Charge> listaGastos;
+        try {
+            //Recopilacion del gasto total
+            listaGastos = Acount.getInstance().getUserCharges();
+            
+            int anoActual = LocalDate.now().getYear();
+            
+            //Tabla de recopilacion de gasto por mes
+            selectYear2.setItems(
+                    FXCollections.observableArrayList(
+                            anoActual-1,anoActual-2,anoActual-3,anoActual-4,anoActual-5));
+            
+            Map<Month,Double> gastosPorMesActual = new HashMap<>();
+            Map<Month,Double> gastosPorMesOtroAno = new HashMap<>();
+            for(Month i : Month.values()){
+                gastosPorMesActual.put(i, .0);
+                gastosPorMesOtroAno.put(i, .0);
+            }
+            for(Charge i : listaGastos){
+                if(i.getDate().getYear() == LocalDate.now().getYear()){
+                    Double gastoPrevio = gastosPorMesActual.get(i.getDate().getMonth());
+                    gastosPorMesActual.put(i.getDate().getMonth(), gastoPrevio + i.getCost() * i.getUnits());
+                }
+                if(i.getDate().getYear() == selectYear2.getValue()){
+                    Double gastoPrevio = gastosPorMesOtroAno.get(i.getDate().getMonth());
+                    gastosPorMesOtroAno.put(i.getDate().getMonth(), gastoPrevio + i.getCost() * i.getUnits());
+                }
+            }
+           
+            XYChart.Series<String, Double> seriesActual = new XYChart.Series<>();
+            XYChart.Series<String, Double> seriesOtroAno = new XYChart.Series<>();
+            for(Month m : Month.values()){
+                seriesActual.getData().add(new XYChart.Data<>(m.toString(), gastosPorMesActual.get(m)));
+                seriesOtroAno.getData().add(new XYChart.Data<>(m.toString(), gastosPorMesOtroAno.get(m)));
+            }
+            seriesActual.setName("Año " + LocalDate.now().getYear());
+            seriesOtroAno.setName("Año " + selectYear2.getValue());
+            // Agregar la serie al LinearChart
+            graficaLinealTendencia.getData().addAll(seriesActual,seriesOtroAno);
+            
+            
+            
+            
+            
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLVistaInicialController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -586,35 +690,29 @@ public class FXMLVistaInicialController implements Initializable {
         try {
             //Recopilacion del gasto total
             listaGastos = Acount.getInstance().getUserCharges();
-            double gastoTotalMes = 0;
-            for(Charge i : listaGastos){
-                if(i.getDate().getMonth().equals(LocalDate.now().getMonth()))
-                    gastoTotalMes += i.getCost() * i.getUnits();
-            }
-            gastoTotalLabel.setText(Double.toString(gastoTotalMes));
             
+            int anoActual = LocalDate.now().getYear();
             
+            //Tabla de recopilacion de gasto por mes
+            selectYear.setItems(
+                    FXCollections.observableArrayList(
+                            anoActual,anoActual-1,anoActual-2,anoActual-3,anoActual-4,anoActual-5));
             
-            //Tabla de recopilacion de gasto por categoria
-            selectYear.setValue(2024);
             Map<Month,Double> gastosPorMes = new HashMap<>();
+            for(Month i : Month.values()){
+                gastosPorMes.put(i, .0);
+            }
             for(Charge i : listaGastos){
                 if(i.getDate().getYear() == selectYear.getValue()){
                     Double gastoPrevio = gastosPorMes.get(i.getDate().getMonth());
-                    if(gastoPrevio != null){
-                        gastosPorMes.put(i.getDate().getMonth(), gastoPrevio + i.getCost() * i.getUnits());
-                    }else{
-                        gastosPorMes.put(i.getDate().getMonth(), i.getCost() * i.getUnits());
-                    }
+                    gastosPorMes.put(i.getDate().getMonth(), gastoPrevio + i.getCost() * i.getUnits());
                 }
             }
-            
-            Set<Month> meses = gastosPorMes.keySet();
+           
             XYChart.Series<String, Double> series = new XYChart.Series<>();
-            for(Month m : meses){
+            for(Month m : Month.values()){
                 series.getData().add(new XYChart.Data<>(m.toString(), gastosPorMes.get(m)));
             }
-            FXCollections.reverse(series.getData());
             // Agregar la serie al BarChart
             tablaComparacionMeses.getData().add(series);
             
