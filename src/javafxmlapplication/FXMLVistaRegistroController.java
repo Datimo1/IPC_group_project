@@ -105,7 +105,10 @@ public class FXMLVistaRegistroController implements Initializable {
             alerta.setTitle("Confirmación de cancelar");
             alerta.setHeaderText(null);
             alerta.setContentText("Al salir de esta venta, se borrarán los datos que hayas introducido.");
-
+            
+            String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
+            alerta.getDialogPane().getStylesheets().add(css);
+            
             Optional<ButtonType> aceptar = alerta.showAndWait();
             if(aceptar.isPresent()){
                 if (aceptar.get() == ButtonType.OK) {
@@ -178,6 +181,8 @@ public class FXMLVistaRegistroController implements Initializable {
                     alerta.setTitle("Registrado correctamente");
                     alerta.setHeaderText(null);
                     alerta.setContentText("Se ha registrado el usuario " + usuarioField.getText() + " correctamente.");
+                    String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
+                    alerta.getDialogPane().getStylesheets().add(css);
                     
                     alerta.show();
                     

@@ -1,0 +1,60 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 7 ene 2024, 19:29:34
+    Author     : nicogalvez
+*/
+
+.dialog-pane {
+    -fx-background-color: #ffffff; /* Fondo blanco */
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #ffffff; /* Azul oscuro */
+    -fx-text-fill: #ffffff; /* Texto en blanco */
+}
+
+.dialog-pane .content {
+    -fx-text-fill: #07396b; /* Texto en azul oscuro */
+    -fx-font-family: hind;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: #005aa7; /* Azul oscuro */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff; /* Texto en blanco */
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #07396b; /* Cambia el color de fondo al hacer hover */
+    -fx-text-fill: #ffffff; /* Cambia el color del texto al hacer hover */
+}
+
+
+/* Alertas de errores: */
+.dialog-pane.error {
+    -fx-background-color: #ffcccc; /* Fondo rojo claro */
+}
+
+.dialog-pane.error .header-panel {
+    -fx-background-color: #ffcccc; /* Rojo oscuro */
+    -fx-text-fill: #ffffff; /* Texto en blanco */
+}
+
+.dialog-pane.error .button-bar {
+    -fx-background-color: #cc0000; /* Rojo oscuro */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff; /* Texto en blanco */
+}
+
+.dialog-pane.error .button-bar .button:hover {
+    -fx-background-color: #990000; /* Cambia el color de fondo al hacer hover */
+    -fx-text-fill: #ffffff; /* Cambia el color del texto al hacer hover */
+}
+

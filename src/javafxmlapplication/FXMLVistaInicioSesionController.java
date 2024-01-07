@@ -84,6 +84,10 @@ public class FXMLVistaInicioSesionController implements Initializable {
             alert.setHeaderText("Sesión iniciada");
                 // ó null si no queremos cabecera
             alert.setContentText(null);
+            
+            String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
+            alert.getDialogPane().getStylesheets().add(css);
+            
             alert.showAndWait();
             
             usuarioIniciado = true;
@@ -109,6 +113,9 @@ public class FXMLVistaInicioSesionController implements Initializable {
             alert.setHeaderText(tipoError);
                 // ó null si no queremos cabecera
             alert.setContentText(null);
+            String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
+            alert.getDialogPane().getStyleClass().add("error");
+            alert.getDialogPane().getStylesheets().add(css);
             alert.showAndWait();
             
               

@@ -113,7 +113,10 @@ public class FXMLVistaPerfilController implements Initializable {
             alerta.setTitle("Confirmación de cancelar");
             alerta.setHeaderText(null);
             alerta.setContentText("Al salir de esta venta, no se guardarán los datos que hayas modificado.");
-
+            
+            String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
+            alerta.getDialogPane().getStylesheets().add(css);
+            
             Optional<ButtonType> aceptar = alerta.showAndWait();
             if(aceptar.isPresent()){
                 if (aceptar.get() == ButtonType.OK) {
@@ -188,6 +191,9 @@ public class FXMLVistaPerfilController implements Initializable {
                     alerta.setTitle("Modificado correctamente");
                     alerta.setHeaderText(null);
                     alerta.setContentText("Se han guardado los datos del usuario " + usuarioField.getText() + " correctamente.");
+                    
+                    String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
+                    alerta.getDialogPane().getStylesheets().add(css);
                     
                     alerta.show();
                     
@@ -277,7 +283,10 @@ public class FXMLVistaPerfilController implements Initializable {
             alerta.setTitle("Confirmación de Cerrar Sesión");
             alerta.setHeaderText(null);
             alerta.setContentText("¿Estás seguro de que quieres Cerrar Sesión?");
-
+            
+            String css = this.getClass().getResource("alertas-estilos.css") .toExternalForm();
+            alerta.getDialogPane().getStylesheets().add(css);
+            
             Optional<ButtonType> aceptar = alerta.showAndWait();
             if(aceptar.isPresent()){
                 if (aceptar.get() == ButtonType.OK) {
